@@ -1,3 +1,6 @@
+# Ignore github pages builds
+out*
+
 # Logs
 logs
 *.log
