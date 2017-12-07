@@ -3,6 +3,8 @@ out*
 
 dist
 
+.env
+
 # Logs
 logs
 *.log
