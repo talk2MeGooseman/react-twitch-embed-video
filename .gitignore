@@ -1,6 +1,8 @@
 # Ignore github pages builds
 out*
 
+dist
+
 # Logs
 logs
 *.log
