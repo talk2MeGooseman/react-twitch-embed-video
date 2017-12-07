@@ -6,7 +6,7 @@ import { withInfo } from '@storybook/addon-info';
 import TwitchEmbedVideo from "../src/index";
 
 const ignoreArgsAction = decorateAction([
-    args => ['player object']
+    args => ['callback triggered']
 ]);
 
 storiesOf('React Twitch Embed Video', module)
@@ -26,9 +26,12 @@ storiesOf('React Twitch Embed Video', module)
     .add('with no chat', () => (
         <TwitchEmbedVideo channel="sneakiiii" layout='video' />
     ))
-    .add('with video start callback', () => (
+    .add('with video play callback', () => (
         <TwitchEmbedVideo channel="sneakiiii" onVideoPlay={ action('onVideoPlay') } />
     ))
     .add('with player ready callback', () => (
         <TwitchEmbedVideo channel="sneakiiii" onPlayerReady={ ignoreArgsAction('onPlayerReady') } />
+    ))
+    .add('with user login callback', () => (
+        <TwitchEmbedVideo channel="sneakiiii" onUserLogin={  ignoreArgsAction('onUserLogin') } />
     ))

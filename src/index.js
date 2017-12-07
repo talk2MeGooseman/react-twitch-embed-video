@@ -38,12 +38,15 @@ class TwitchEmbedVideo extends PureComponent {
         muted: PropTypes.bool,
         /** If true, the embedded player plays inline for mobile iOS apps. Default: false. */
         playsinline: PropTypes.bool,
-        /** 	The Twitch embed color theme to use. Valid values: light or dark. Default: light. */
+        /** The Twitch embed color theme to use. Valid values: light or dark. Default: light. */
         theme: PropTypes.string,
         /** Time in the video where playback starts. Specifies hours, minutes, and seconds. Default: 0h0m0s (the start of the video). */
         time: PropTypes.string,
+        /** User has logged in callback */
         onUserLogin: PropTypes.func,
+        /** The video started playing. This callback receives an object with a sessionId property. */
         onVideoPlay: PropTypes.func,
+        /** The video player is ready for API commands. This callback receives the player object. */
         onPlayerReady: PropTypes.func,
     };
 
