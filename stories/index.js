@@ -12,26 +12,26 @@ const ignoreArgsAction = decorateAction([
 storiesOf('React Twitch Embed Video', module)
     .addDecorator((story, context) => withInfo('Info')(story)(context))
     .add('with channel', () => (
-        <TwitchEmbedVideo channel='nyixxs' />
+        <TwitchEmbedVideo channel='talk2megooseman' />
     ))
     .add('with vod', () => (
-        <TwitchEmbedVideo video='205214058' />
+        <TwitchEmbedVideo video='207270826' />
     ))
     .add('with custom width and height', () => (
-        <TwitchEmbedVideo channel="nyixxs" height="400" width="800" />
+        <TwitchEmbedVideo channel="talk2megooseman" height="400" width="800" />
     ))
     .add('with dark theme', () => (
-        <TwitchEmbedVideo channel="sneakiiii" theme='dark' />
+        <TwitchEmbedVideo channel="talk2megooseman" theme='dark' />
     ))
     .add('with no chat', () => (
-        <TwitchEmbedVideo channel="sneakiiii" layout='video' />
+        <TwitchEmbedVideo channel="talk2megooseman" layout='video' />
     ))
     .add('with video play callback', () => (
-        <TwitchEmbedVideo channel="sneakiiii" onVideoPlay={ action('onVideoPlay') } />
+        <TwitchEmbedVideo channel="talk2megooseman" onVideoPlay={ action('onVideoPlay') } />
     ))
     .add('with player ready callback', () => (
-        <TwitchEmbedVideo channel="sneakiiii" onPlayerReady={ ignoreArgsAction('onPlayerReady') } />
+        <TwitchEmbedVideo channel="talk2megooseman" onPlayerReady={ ignoreArgsAction('onPlayerReady') } />
     ))
     .add('with user login callback', () => (
-        <TwitchEmbedVideo channel="sneakiiii" onUserLogin={  ignoreArgsAction('onUserLogin') } />
+        <TwitchEmbedVideo channel="talk2megooseman" onUserLogin={  ignoreArgsAction('onUserLogin') } />
     ))

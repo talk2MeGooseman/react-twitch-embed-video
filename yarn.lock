@@ -117,6 +117,12 @@
   optionalDependencies:
     "@types/react" "^16.0.20"
 
+"@storybook/addon-options@^3.2.17":
+  version "3.2.17"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-options/-/addon-options-3.2.17.tgz#1ca1de1f3cf8ac7ec99bcdd534d6e034f9ee4f20"
+  dependencies:
+    "@storybook/addons" "^3.2.17"
+
 "@storybook/addons@^3.2.17":
   version "3.2.17"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-3.2.17.tgz#5c2ece24c5f7fbf7cedf4cfe503c5e356543e62d"
@@ -5828,13 +5834,6 @@ react-treebeard@^2.0.3:
     radium "^0.19.0"
     shallowequal "^0.2.2"
     velocity-react "^1.3.1"
-
-react-twitch-embed-video@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/react-twitch-embed-video/-/react-twitch-embed-video-1.0.0.tgz#ce697d4c36b83f2468af1ff45b5e72e65d63d5b8"
-  dependencies:
-    react "^16.0.0"
-    react-dom "^16.0.0"
 
 react@^16.0.0:
   version "16.2.0"
