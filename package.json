@@ -1,6 +1,6 @@
 {
   "name": "react-twitch-embed-video",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "build": "cross-env NODE_ENV=development webpack --config webpack.config.babel.js",
     "release": "cross-env NODE_ENV=production webpack --p --config webpack.config.babel.js",
@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "react-twitch-embed-video": "^1.0.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.17",

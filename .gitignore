@@ -1,8 +1,6 @@
 # Ignore github pages builds
 out*
 
-dist
-
 .env
 
 # Logs
