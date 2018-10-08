@@ -3,6 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import root from 'window-or-global'
 
 const EMBED_URL = 'https://embed.twitch.tv/embed/v1.js';
 
@@ -58,8 +59,8 @@ class TwitchEmbedVideo extends PureComponent {
 
     componentDidMount() {
         let embed;
-        if (window.Twitch && window.Twitch.Embed) {
-            embed = new window.Twitch.Embed(this.props.targetClass, { ...this.props });
+        if (root.Twitch && root.Twitch.Embed) {
+            embed = new root.Twitch.Embed(this.props.targetClass, { ...this.props });
             this._addEventListeners(embed);
         } else {
             const script = document.createElement('script');
@@ -68,7 +69,7 @@ class TwitchEmbedVideo extends PureComponent {
                 EMBED_URL
             );
             script.addEventListener('load', () => {
-                embed = new window.Twitch.Embed(this.props.targetClass, { ...this.props });
+                embed = new root.Twitch.Embed(this.props.targetClass, { ...this.props });
                 this._addEventListeners(embed);
             });
 
@@ -77,20 +78,20 @@ class TwitchEmbedVideo extends PureComponent {
     }
 
     _addEventListeners(embed) {
-        embed.addEventListener(window.Twitch.Embed.AUTHENTICATE, function(user) {
+        embed.addEventListener(root.Twitch.Embed.AUTHENTICATE, function(user) {
             if (this.props.onUserLogin) {
                 this.props.onUserLogin(user);
             }
         }.bind(this));        
 
-        embed.addEventListener(window.Twitch.Embed.VIDEO_PLAY, function(data) {
+        embed.addEventListener(root.Twitch.Embed.VIDEO_PLAY, function(data) {
             if (this.props.onVideoPlay) {
                 this.props.onVideoPlay(data);
             }
         }.bind(this));
 
         /** Player ready for programmatic commands */     
-        embed.addEventListener(window.Twitch.Embed.VIDEO_READY, function() {
+        embed.addEventListener(root.Twitch.Embed.VIDEO_READY, function() {
             var player = embed.getPlayer();
 
             if (this.props.onPlayerReady) {
