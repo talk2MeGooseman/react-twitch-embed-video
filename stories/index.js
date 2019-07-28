@@ -35,3 +35,9 @@ storiesOf('React Twitch Embed Video', module)
     .add('with user login callback', () => (
         <TwitchEmbedVideo channel="talk2megooseman" onUserLogin={  ignoreArgsAction('onUserLogin') } />
     ))
+    .add('2 twitch streams at the same time', () => (
+        <div>
+          <TwitchEmbedVideo channel="talk2megooseman"/>
+          <TwitchEmbedVideo channel="talk2megooseman" targetClass='second'/>
+        </div>
+    ))

@@ -77,6 +77,20 @@ class TwitchEmbedVideo extends PureComponent {
         }
     }
 
+    componentWillReceiveProps(nextProps){
+        const channelChanged = this.props.channel !== nextProps.channel;
+        const chatChanged = this.props.layout !== nextProps.layout;
+        if (channelChanged || chatChanged) {
+            var myNode = document.getElementById(nextProps.targetClass);
+            myNode.innerHTML = ''
+
+            this.embed = null;
+            this.embed = new window.Twitch.Embed(this.props.targetClass, {
+                ...nextProps
+            });
+        }
+    }
+
     _addEventListeners(embed) {
         embed.addEventListener(root.Twitch.Embed.AUTHENTICATE, function(user) {
             if (this.props.onUserLogin) {
