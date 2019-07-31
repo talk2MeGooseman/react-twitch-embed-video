@@ -77,7 +77,7 @@ class TwitchEmbedVideo extends PureComponent {
         }
     }
 
-    componentWillReceiveProps(nextProps){
+    UNSAFE_componentWillReceiveProps(nextProps){
         const channelChanged = this.props.channel !== nextProps.channel;
         const chatChanged = this.props.layout !== nextProps.layout;
         if (channelChanged || chatChanged) {
@@ -96,7 +96,7 @@ class TwitchEmbedVideo extends PureComponent {
             if (this.props.onUserLogin) {
                 this.props.onUserLogin(user);
             }
-        }.bind(this));        
+        }.bind(this));
 
         embed.addEventListener(root.Twitch.Embed.VIDEO_PLAY, function(data) {
             if (this.props.onVideoPlay) {
@@ -104,14 +104,14 @@ class TwitchEmbedVideo extends PureComponent {
             }
         }.bind(this));
 
-        /** Player ready for programmatic commands */     
+        /** Player ready for programmatic commands */
         embed.addEventListener(root.Twitch.Embed.VIDEO_READY, function() {
             var player = embed.getPlayer();
 
             if (this.props.onPlayerReady) {
                 this.props.onPlayerReady(player);
             }
-        }.bind(this));        
+        }.bind(this));
     }
 
     render() {

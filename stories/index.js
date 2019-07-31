@@ -38,6 +38,6 @@ storiesOf('React Twitch Embed Video', module)
     .add('2 twitch streams at the same time', () => (
         <div>
           <TwitchEmbedVideo channel="talk2megooseman"/>
-          <TwitchEmbedVideo channel="talk2megooseman" targetClass='second'/>
+          <TwitchEmbedVideo channel="lana_lux" targetClass='second'/>
         </div>
     ))
