@@ -1,9 +1,20 @@
-workflow "Push, Install, Lint, Deploy" {
+workflow "Push, Lint, Storybook Deploy" {
   resolves = [
     "Deploy to GitHub Pages",
+  ]
+  on = "push"
+}
+
+workflow "Push, Lint, Release" {
+  resolves = [
     "GitHub Action for npm",
   ]
   on = "push"
+}
+
+action "Tag" {
+  uses = "actions/bin/filter@master"
+  args = "tag"
 }
 
 action "Install" {
@@ -12,7 +23,19 @@ action "Install" {
 }
 
 action "Lint" {
-  needs = "Install"
+  needs = ["Install"]
+  uses = "Borales/actions-yarn@master"
+  args = "lint"
+}
+
+action "Install Tag" {
+  needs= "Tag"
+  uses = "Borales/actions-yarn@master"
+  args = "install"
+}
+
+action "Lint Tag" {
+  needs = ["Install Tag"]
   uses = "Borales/actions-yarn@master"
   args = "lint"
 }
@@ -38,15 +61,9 @@ action "Deploy to GitHub Pages" {
   needs = ["Build Storybook"]
 }
 
-action "Tag" {
-  needs = "Lint"
-  uses = "actions/bin/filter@master"
-  args = "tag"
-}
-
 action "Build Release" {
   uses = "Borales/actions-yarn@master"
-  needs = "Tag"
+  needs = "Lint Tag"
   args = "release"
 }
 
