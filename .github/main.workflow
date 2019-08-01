@@ -1,11 +1,9 @@
 workflow "Push, Install, Lint, Deploy" {
-  resolves = ["Deploy to GitHub Pages"]
+  resolves = [
+    "Deploy to GitHub Pages",
+    "GitHub Action for npm",
+  ]
   on = "push"
-}
-
-workflow "Pull Request, Lint, Deploy" {
-  on = "pull_request"
-  resolves = ["Build Storybook"]
 }
 
 action "Install" {
@@ -38,4 +36,23 @@ action "Deploy to GitHub Pages" {
   }
   secrets = ["GH_PAT"]
   needs = ["Build Storybook"]
+}
+
+action "Tag" {
+  needs = "Filter Master"
+  uses = "actions/bin/filter@master"
+  args = "tag"
+}
+
+action "Build Release" {
+  uses = "Borales/actions-yarn@master"
+  needs = "Tag"
+  args = "release"
+}
+
+action "GitHub Action for npm" {
+  uses = "actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680"
+  needs = ["Build Release"]
+  args = "publish"
+  secrets = ["NPM_AUTH_TOKEN"]
 }
