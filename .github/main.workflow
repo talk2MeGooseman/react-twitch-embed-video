@@ -6,11 +6,6 @@ workflow "Push, Install, Lint, Deploy" {
   on = "push"
 }
 
-workflow "Pull Request, Lint, Deploy" {
-  on = "pull_request"
-  resolves = ["Build Storybook"]
-}
-
 action "Install" {
   uses = "Borales/actions-yarn@master"
   args = "install"
