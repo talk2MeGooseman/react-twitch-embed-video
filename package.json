@@ -1,6 +1,17 @@
 {
   "name": "react-twitch-embed-video",
+  "description": "Allows you to easily embed a twitch video in your ReactJS application",
   "version": "1.1.0",
+  "license": "MIT",
+  "author": "Erik Guzman",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/talk2MeGooseman/react-twitch-embed-video.git"
+  },
+  "bugs": {
+    "url": "https://github.com/talk2MeGooseman/react-twitch-embed-video/issues"
+  },
+  "homepage": "https://talk2megooseman.github.io/react-twitch-embed-video/",
   "scripts": {
     "build": "cross-env NODE_ENV=development webpack --config webpack.config.babel.js",
     "release": "cross-env NODE_ENV=production webpack --p --config webpack.config.babel.js",
