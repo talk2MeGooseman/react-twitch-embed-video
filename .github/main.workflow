@@ -39,7 +39,7 @@ action "Deploy to GitHub Pages" {
 }
 
 action "Tag" {
-  needs = "Filter Master"
+  needs = "Lint"
   uses = "actions/bin/filter@master"
   args = "tag"
 }
