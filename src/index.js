@@ -37,12 +37,8 @@ class TwitchEmbedVideo extends PureComponent {
         layout: PropTypes.string,
         /** Specifies whether the initial state of the video is muted. Default: false. */
         muted: PropTypes.bool,
-        /** If true, the embedded player plays inline for mobile iOS apps. Default: false. */
-        playsinline: PropTypes.bool,
         /** The Twitch embed color theme to use. Valid values: light or dark. Default: light. */
         theme: PropTypes.string,
-        /** Time in the video where playback starts. Specifies hours, minutes, and seconds. Default: 0h0m0s (the start of the video). */
-        time: PropTypes.string,
         /** User has logged in callback */
         onUserLogin: PropTypes.func,
         /** The video started playing. This callback receives an object with a sessionId property. */
@@ -54,23 +50,31 @@ class TwitchEmbedVideo extends PureComponent {
     static defaultProps = {
         targetClass: 'twitch-embed',
         width: "940",
-        height: "480"
-    };
+        height: "480",
+        autoplay: true,
+        muted: false,
+     };
+
+    state = {
+        embed: null,
+    }
 
     componentDidMount() {
-        let embed;
+        // Check if we have Twitch in the global space and Embed is available
         if (root.Twitch && root.Twitch.Embed) {
-            embed = new root.Twitch.Embed(this.props.targetClass, { ...this.props });
-            this._addEventListeners(embed);
+            this.embed = new root.Twitch.Embed(this.props.targetClass, { ...this.props });
+            this._addEventListeners();
         } else {
+            // Initialize the Twitch embed lib if not present
             const script = document.createElement('script');
             script.setAttribute(
                 'src',
                 EMBED_URL
             );
+            // Wait for DOM to finishing loading before we try loading embed
             script.addEventListener('load', () => {
-                embed = new root.Twitch.Embed(this.props.targetClass, { ...this.props });
-                this._addEventListeners(embed);
+                this.embed = new root.Twitch.Embed(this.props.targetClass, { ...this.props });
+                this._addEventListeners();
             });
 
             document.body.appendChild(script);
@@ -91,22 +95,31 @@ class TwitchEmbedVideo extends PureComponent {
         }
     }
 
-    _addEventListeners(embed) {
-        embed.addEventListener(root.Twitch.Embed.AUTHENTICATE, function(user) {
+    _addEventListeners() {
+        this.embed.addEventListener(root.Twitch.Embed.AUTHENTICATE, function(user) {
             if (this.props.onUserLogin) {
                 this.props.onUserLogin(user);
             }
         }.bind(this));
 
-        embed.addEventListener(root.Twitch.Embed.VIDEO_PLAY, function(data) {
+        this.embed.addEventListener(root.Twitch.Embed.VIDEO_PLAY, function(data) {
             if (this.props.onVideoPlay) {
                 this.props.onVideoPlay(data);
             }
         }.bind(this));
 
         /** Player ready for programmatic commands */
-        embed.addEventListener(root.Twitch.Embed.VIDEO_READY, function() {
-            var player = embed.getPlayer();
+        this.embed.addEventListener(root.Twitch.Embed.VIDEO_READY, function() {
+            const { autoplay, muted } = this.props;
+
+            var player = this.embed.getPlayer();
+
+            if (muted) {
+                player.setVolume(0)
+            }
+            if (autoplay === false) {
+                player.pause();
+            }
 
             if (this.props.onPlayerReady) {
                 this.props.onPlayerReady(player);

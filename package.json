@@ -1,6 +1,6 @@
 {
   "name": "react-twitch-embed-video",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "scripts": {
     "build": "cross-env NODE_ENV=development webpack --config webpack.config.babel.js",
     "release": "cross-env NODE_ENV=production webpack --p --config webpack.config.babel.js",

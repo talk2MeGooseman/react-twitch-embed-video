@@ -15,6 +15,12 @@ export default () => ({
         libraryTarget: 'umd',
     },
 
+    watchOptions: {
+        ignored: /node_modules/,
+        aggregateTimeout: 300,
+        poll: 500
+    },
+
     module: {
         rules: [
             {

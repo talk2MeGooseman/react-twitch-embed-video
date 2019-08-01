@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action, decorateAction } from '@storybook/addon-actions';
-import { WithNotes } from '@storybook/addon-notes';
 import { withInfo } from '@storybook/addon-info';
+import { withKnobs, text} from '@storybook/addon-knobs';
 import TwitchEmbedVideo from "../src/index";
 
 const ignoreArgsAction = decorateAction([
@@ -11,6 +11,7 @@ const ignoreArgsAction = decorateAction([
 
 storiesOf('React Twitch Embed Video', module)
     .addDecorator((story, context) => withInfo('Info')(story)(context))
+    .addDecorator(withKnobs)
     .add('with channel', () => (
         <TwitchEmbedVideo channel='talk2megooseman' />
     ))
@@ -33,11 +34,17 @@ storiesOf('React Twitch Embed Video', module)
         <TwitchEmbedVideo channel="talk2megooseman" onPlayerReady={ ignoreArgsAction('onPlayerReady') } />
     ))
     .add('with user login callback', () => (
-        <TwitchEmbedVideo channel="talk2megooseman" onUserLogin={  ignoreArgsAction('onUserLogin') } />
+        <TwitchEmbedVideo channel="talk2megooseman" onUserLogin={ ignoreArgsAction('onUserLogin') } />
     ))
-    .add('2 twitch streams at the same time', () => (
+    .add('2 twitch streams and dynamic update knob', () => (
         <div>
           <TwitchEmbedVideo channel="talk2megooseman"/>
-          <TwitchEmbedVideo channel="lana_lux" targetClass='second'/>
+          <TwitchEmbedVideo channel={text('Second Embed Channel', 'lana_lux')} targetClass='second'/>
         </div>
+    ))
+    .add('with autoplay false', () => (
+        <TwitchEmbedVideo video='207270826' autoplay={false} />
+    ))
+    .add('with muted true', () => (
+        <TwitchEmbedVideo video='207270826' muted={true} />
     ))
