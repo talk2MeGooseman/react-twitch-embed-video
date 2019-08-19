@@ -55,10 +55,6 @@ class TwitchEmbedVideo extends PureComponent {
         muted: false,
      };
 
-    state = {
-        embed: null,
-    }
-
     componentDidMount() {
         // Check if we have Twitch in the global space and Embed is available
         if (root.Twitch && root.Twitch.Embed) {
