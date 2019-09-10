@@ -1,12 +1,12 @@
 {
   "name": "react-twitch-embed-video",
   "description": "Allows you to easily embed a twitch video in your ReactJS application",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "author": "Erik Guzman",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/talk2MeGooseman/react-twitch-embed-video.git"
+    "type": "git",
+    "url": "https://github.com/talk2MeGooseman/react-twitch-embed-video.git"
   },
   "bugs": {
     "url": "https://github.com/talk2MeGooseman/react-twitch-embed-video/issues"
@@ -18,10 +18,7 @@
     "deploy": "",
     "lint": "eslint ./src",
     "start": "start-storybook -p 9001 -c .storybook",
-    "release-storybook": "build-storybook -c .storybook -o .out",
-    "deploy-storybook": "storybook-to-ghpages",
-    "publish-please": "publish-please",
-    "prepublish": "publish-please guard"
+    "release-storybook": "build-storybook -c .storybook -o .out"
   },
   "dependencies": {
     "react": "^16.0.0",
@@ -46,7 +43,6 @@
     "cross-env": "^5.1.1",
     "eslint": "^4.9.0",
     "eslint-plugin-react": "^7.5.1",
-    "publish-please": "^5.5.1",
     "react-hot-loader": "^4.5.3",
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1",
