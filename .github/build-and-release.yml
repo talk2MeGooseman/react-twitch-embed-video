@@ -1,6 +1,6 @@
 name: Build and Release Tagged Version
 
-on: ["push"]
+on: [push]
 
 jobs:
   build:
