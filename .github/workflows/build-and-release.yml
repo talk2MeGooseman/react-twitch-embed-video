@@ -18,10 +18,12 @@ jobs:
         yarn lint
 
     - name: Build Storybook
+      if: github.event_name == 'tag'
       run: |
         yarn release-storybook
 
     - name: Publish to Github Pages
+      if: github.event_name == 'tag'
       uses: maxheld83/ghpages@v0.2.1
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
@@ -34,6 +36,8 @@ jobs:
 
     - name: Publish to NPM
       if: github.event_name == 'tag'
-      uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
       env:
         NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN}}
+      run: |
+        npm publish
+
