@@ -1,0 +1,41 @@
+name: Build and Release Tagged Version
+
+on: ["push"]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: yarn install
+      run: |
+        yarn install
+
+    - name: yarn lint
+      run: |
+        yarn lint
+
+    - name: Build Storybook
+      if: github.event_name == 'tag'
+      run: |
+        yarn release-storybook
+
+    - name: Publish to Github Pages
+      if: success()
+      uses: maxheld83/ghpages@v0.2.1
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+        BUILD_DIR: "dist/"
+
+    - name: Build Package Release
+      if: success()
+      run: |
+        yarn release
+
+    - name: Publish to NPM
+      if: success()
+      uses: actions/npm@59b64a598378f31e49cb76f27d6f3312b582f680
+      env:
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN}}
