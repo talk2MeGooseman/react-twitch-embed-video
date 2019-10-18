@@ -38,10 +38,10 @@ storiesOf('React Twitch Embed Video', module)
         <TwitchEmbedVideo channel="talk2megooseman" onUserLogin={ ignoreArgsAction('onUserLogin') } />
     ))
     .add('2 twitch streams and dynamic update knob', () => (
-        <span>
-            <TwitchEmbedVideo channel="talk2megooseman"/>
-            <TwitchEmbedVideo channel={text('Second Embed Channel', 'lana_lux')} targetClass='second'/>
-        </span>
+        <div style={ {height: "900px"} }>
+            <TwitchEmbedVideo width="500px" height="400px" channel="talk2megooseman"/>
+            <TwitchEmbedVideo width="100%" height="100%" channel={text('Second Embed Channel', 'lana_lux')} targetClass='second'/>
+        </div>
     ))
     .add('with autoplay false', () => (
         <TwitchEmbedVideo video='207270826' autoplay={false} />

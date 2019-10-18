@@ -125,7 +125,7 @@ class TwitchEmbedVideo extends PureComponent {
 
     render() {
         return (
-            <div id={this.props.targetClass}></div>
+            <div style={{ width: this.props.width, height: this.props.height }} id={this.props.targetClass}></div>
         );
     }
 }
