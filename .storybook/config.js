@@ -1,5 +1,5 @@
 import { configure } from '@storybook/react';
-import { setOptions } from '@storybook/addon-options';
+import { withOptions } from '@storybook/addon-options';
 
 function loadStories() {
   require('../stories/index.js');
@@ -7,7 +7,7 @@ function loadStories() {
 }
 
 // Option defaults:
-setOptions({
+withOptions({
   /**
    * name to display in the top left corner
    * @type {String}
@@ -27,12 +27,12 @@ setOptions({
    * display left panel that shows a list of stories
    * @type {Boolean}
    */
-  showLeftPanel: true,
+  showStoriesPanel: true,
   /**
    * display horizontal panel that displays addon configurations
    * @type {Boolean}
    */
-  showDownPanel: true,
+  showAddonPanel: true,
   /**
    * display floating search box to search through stories
    * @type {Boolean}
@@ -42,7 +42,7 @@ setOptions({
    * show horizontal addons panel as a vertical panel on the right
    * @type {Boolean}
    */
-  downPanelInRight: false,
+  addonPanelInRight : false,
   /**
    * sorts stories
    * @type {Boolean}
