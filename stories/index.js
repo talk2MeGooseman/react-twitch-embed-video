@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action, decorateAction } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import { withKnobs, text } from '@storybook/addon-knobs';
 import TwitchEmbedVideo from "../src/index";
 
 const ignoreArgsAction = decorateAction([
@@ -11,7 +11,6 @@ const ignoreArgsAction = decorateAction([
 
 storiesOf('React Twitch Embed Video', module)
     .addDecorator(withInfo)
-    // .addDecorator((story, context) => withInfo('Info')(story)(context))
     .addDecorator(withKnobs)
     .add('with channel', () => (
         <TwitchEmbedVideo channel='talk2megooseman' />
