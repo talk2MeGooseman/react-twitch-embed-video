@@ -2,7 +2,7 @@ name: Build and Release Tagged Version
 
 on:
   release:
-    types: [published, created]
+    types: [published]
 
 jobs:
   build:
@@ -35,7 +35,7 @@ jobs:
 
     - name: Publish to NPM
       env:
-        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN}}
+        NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN}}
       run: |
         npm publish
 
