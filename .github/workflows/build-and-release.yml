@@ -1,6 +1,8 @@
 name: Build and Release Tagged Version
 
-on: [push]
+on:
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -9,6 +11,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+    - uses: actions/setup-node@v1
+      with:
+        registry-url: 'https://registry.npmjs.org'
     - name: yarn install
       run: |
         yarn install
@@ -18,26 +23,20 @@ jobs:
         yarn lint
 
     - name: Build Storybook
-      if: github.event_name == 'tag'
       run: |
         yarn release-storybook
 
     - name: Publish to Github Pages
-      if: github.event_name == 'tag'
       uses: maxheld83/ghpages@v0.2.1
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
         BUILD_DIR: ".out/"
 
     - name: Build Package Release
-      if: github.event_name == 'tag'
       run: |
         yarn release
 
-    - name: Publish to NPM
-      if: github.event_name == 'tag'
+    - run: npm publish
       env:
-        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN}}
-      run: |
-        npm publish
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN}}
 
