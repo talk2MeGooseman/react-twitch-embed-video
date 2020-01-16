@@ -82,9 +82,11 @@ class TwitchEmbedVideo extends PureComponent {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     const channelChanged = this.props.channel !== nextProps.channel;
-
     const chatChanged = this.props.layout !== nextProps.layout;
-    if (channelChanged || chatChanged) {
+    const heightChanged = this.props.height !== nextProps.height;
+    const widthChanged = this.props.width !== nextProps.width;
+
+    if (channelChanged || chatChanged || heightChanged || widthChanged) {
       var myNode = document.getElementById(nextProps.targetClass);
       myNode.innerHTML = '';
 
