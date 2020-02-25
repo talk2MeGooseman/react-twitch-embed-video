@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import root from 'window-or-global';
 
@@ -11,43 +11,59 @@ function buildVideoEmbed(options) {
 }
 
 function TwitchEmbedVideo (props) {
-  const twitchEmbedRef = useRef();
   const conatinerRef = useRef();
+  const [ twitchEmbed, setTwitchEmbed ] = useState(null);
 
+  // Builds the Twitch Embed
   useEffect(() => {
-    const embed = twitchEmbedRef.current;
-    if(!embed) return;
+    conatinerRef.current.innerHTML = '';
 
-    embed.addEventListener(root.Twitch.Embed.AUTHENTICATE, user => {
-      if (props.onUserLogin) {
-        props.onUserLogin(user);
-      }
-    });
-  }, [twitchEmbedRef.current, props.onUserLogin]);
+    // Check if we have Twitch in the global space and Embed is available
+    if (root.twitch && root.twitch.embed) {
+      setTwitchEmbed(buildVideoEmbed(props));
+    } else {
+      // Initialize the Twitch embed lib if not present
+      const script = document.createElement('script');
+      script.setAttribute('src', EMBED_URL);
 
+      // Wait for DOM to finishing loading before we try loading embed
+      script.addEventListener('load', () => {
+        setTwitchEmbed(buildVideoEmbed(props));
+      });
+
+      document.body.appendChild(script);
+    }
+  }, [props.channel, props.layout, props.width, props.height, props.theme, props.muted, props.autoplay, props.layout])
+
+  // useEffect to add listener for AUTHENTICATE event
   useEffect(() => {
-    const embed = twitchEmbedRef.current;
-    if(!embed) return;
+    if(!twitchEmbed) return;
 
-    embed.addEventListener(root.Twitch.Embed.VIDEO_PLAY, data => {
-      if (props.onVideoPlay) {
-        props.onVideoPlay(data);
-      }
-    });
-  }, [twitchEmbedRef.current, props.onVideoPlay]);
+    twitchEmbed.addEventListener(root.Twitch.Embed.AUTHENTICATE, props.onUserLogin);
+  }, [twitchEmbed, props.onUserLogin]);
 
+  // useEffect to add listener for VIDEO_PLAY event
   useEffect(() => {
-    const embed = twitchEmbedRef.current;
-    if(!embed) return;
+    if(!twitchEmbed) return;
 
-    embed.addEventListener(root.Twitch.Embed.VIDEO_READY, () => {
+    twitchEmbed.addEventListener(root.Twitch.Embed.VIDEO_PLAY, props.onVideoPlay);
+  }, [twitchEmbed, props.onVideoPlay]);
+
+  // useEffect to add listener for VIDEO_READY
+  useEffect(() => {
+    if(!twitchEmbed) return;
+
+    twitchEmbed.addEventListener(root.Twitch.Embed.VIDEO_READY, () => {
       const { autoplay, muted } = props;
 
-      var player = embed.getPlayer();
+      var player = twitchEmbed.getPlayer();
 
       if (muted) {
         player.setVolume(0);
+      } else {
+        player.setVolume(1);
       }
+
       if (autoplay === false) {
         player.pause();
       }
@@ -56,28 +72,7 @@ function TwitchEmbedVideo (props) {
         props.onPlayerReady(player);
       }
     });
-  }, [twitchEmbedRef.current, props.onPlayerReady, props.autoplay, props.muted]);
-
-  useEffect(() => {
-    conatinerRef.current.innerHTML = '';
-    twitchEmbedRef.current = null;
-
-    // Check if we have Twitch in the global space and Embed is available
-    if (root.twitch && root.twitch.embed) {
-      twitchEmbedRef.current = buildVideoEmbed(props)
-    } else {
-      // Initialize the Twitch embed lib if not present
-      const script = document.createElement('script');
-      script.setAttribute('src', EMBED_URL);
-
-      // Wait for DOM to finishing loading before we try loading embed
-      script.addEventListener('load', () => {
-        twitchEmbedRef.current = buildVideoEmbed(props)
-      });
-
-      document.body.appendChild(script);
-    }
-  }, [props.channel, props.layout, props.width, props.height, props.theme, props.muted, props.autoplay, props.layout])
+  }, [twitchEmbed, props.onPlayerReady, props.autoplay, props.muted]);
 
   const { width, height, targetClass } = props;
   return (

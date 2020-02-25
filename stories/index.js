@@ -25,7 +25,7 @@ storiesOf('React Twitch Embed Video', module)
         <TwitchEmbedVideo channel="talk2megooseman" theme={select('Theme', ['dark', 'light'], 'dark')} />
     ))
     .add('Layout: with or without chat', () => (
-        <TwitchEmbedVideo channel="talk2megooseman" layout={select('Layout', ['video-and-chat', 'video'], 'video')} />
+        <TwitchEmbedVideo channel="talk2megooseman" layout={select('Layout', ['video-with-chat', 'video'], 'video')} />
     ))
     .add('Choose autoplay', () => (
         <TwitchEmbedVideo video='462014255' autoplay={select('Autoplay', [true, false], false)} />
