@@ -4,77 +4,108 @@ import root from 'window-or-global';
 
 const EMBED_URL = 'https://embed.twitch.tv/embed/v1.js';
 
-function buildVideoEmbed(options) {
-  return new root.Twitch.Embed(options.targetClass, {
-    ...options,
-  });
+function loadTwitchEmbed(setTwitchEmbed) {
+  const script = document.createElement('script');
+  script.setAttribute('src', EMBED_URL);
+  // Wait for DOM to finishing loading before we try loading embed
+  script.addEventListener('load', setTwitchEmbed);
+  document.body.appendChild(script);
+}
+
+function useTwitchPlayer(props) {
+  const [ twitchEmbed, setTwitchEmbed ] = useState(null);
+
+  const setFrame = useCallback(() => {
+    const embed = new root.Twitch.Embed(props.targetClass, {
+      ...props,
+    });
+    setTwitchEmbed(embed);
+  }, [props]);
+
+  return [twitchEmbed, setFrame]
+}
+
+function useTwitchEmbedEvent(twitchEmbed) {
+  return useCallback((event, callback) => {
+    if(!twitchEmbed) return () => {};
+
+    twitchEmbed.addEventListener(event, callback);
+
+    return (() => { twitchEmbed.removeEventListener(event, callback) });
+  }, [twitchEmbed]);
+}
+
+function usePlayerReady(twitchEmbed, {onPlayerReady, autoplay, muted}) {
+  return useCallback(() => {
+    if (!twitchEmbed) return;
+
+    var player = twitchEmbed.getPlayer();
+
+    if (muted) {
+      player.setVolume(0);
+    } else {
+      player.setVolume(1);
+    }
+
+    if (autoplay === false) {
+      player.pause();
+    }
+
+    if (onPlayerReady) {
+      onPlayerReady(player);
+    }
+  }, [twitchEmbed, muted, autoplay, onPlayerReady]);
+}
+
+function useOnPlayCallback(shouldBePlaying, setShouldBePlaying, onVideoPlay, twitchEmbed) {
+  return useCallback(() => {
+    if (shouldBePlaying) {
+      setShouldBePlaying(true);
+      onVideoPlay();
+    }
+    else {
+      setShouldBePlaying(true);
+      const player = twitchEmbed.getPlayer();
+      player.pause();
+    }
+  }, [shouldBePlaying, setShouldBePlaying, onVideoPlay, twitchEmbed]);
 }
 
 function TwitchEmbedVideo (props) {
+  const { width, height, targetClass, onVideoPlay } = props;
   const conatinerRef = useRef();
-  const [ twitchEmbed, setTwitchEmbed ] = useState(null);
+  const [shouldBePlaying, setShouldBePlaying] = useState(props.autoplay);
+  const [twitchEmbed, setTwitchEmbed] = useTwitchPlayer(props);
+  const setTwitchEmbedEvent = useTwitchEmbedEvent(twitchEmbed);
+  const playerReadyCallback = usePlayerReady(twitchEmbed, props);
+  const videoPlayCallback = useOnPlayCallback(shouldBePlaying, setShouldBePlaying, onVideoPlay, twitchEmbed);
+
+  useEffect(() => {
+    if (!root.Twitch) return;
+
+    const removeVideoPlay = setTwitchEmbedEvent(root.Twitch.Embed.VIDEO_PLAY, videoPlayCallback);
+    const removePlayerReady = setTwitchEmbedEvent(root.Twitch.Embed.VIDEO_READY, playerReadyCallback);
+
+    return () => {
+      removePlayerReady();
+      removeVideoPlay();
+    };
+
+  }, [playerReadyCallback, setTwitchEmbedEvent, videoPlayCallback]);
 
   // Builds the Twitch Embed
   useEffect(() => {
     conatinerRef.current.innerHTML = '';
 
     // Check if we have Twitch in the global space and Embed is available
-    if (root.twitch && root.twitch.embed) {
-      setTwitchEmbed(buildVideoEmbed(props));
+    if (root.Twitch && root.Twitch.Embed) {
+      setTwitchEmbed();
     } else {
       // Initialize the Twitch embed lib if not present
-      const script = document.createElement('script');
-      script.setAttribute('src', EMBED_URL);
-
-      // Wait for DOM to finishing loading before we try loading embed
-      script.addEventListener('load', () => {
-        setTwitchEmbed(buildVideoEmbed(props));
-      });
-
-      document.body.appendChild(script);
+      loadTwitchEmbed(setTwitchEmbed);
     }
-  }, [props.channel, props.layout, props.width, props.height, props.theme, props.muted, props.autoplay, props.layout])
+  }, [setTwitchEmbed])
 
-  // useEffect to add listener for AUTHENTICATE event
-  useEffect(() => {
-    if(!twitchEmbed) return;
-
-    twitchEmbed.addEventListener(root.Twitch.Embed.AUTHENTICATE, props.onUserLogin);
-  }, [twitchEmbed, props.onUserLogin]);
-
-  // useEffect to add listener for VIDEO_PLAY event
-  useEffect(() => {
-    if(!twitchEmbed) return;
-
-    twitchEmbed.addEventListener(root.Twitch.Embed.VIDEO_PLAY, props.onVideoPlay);
-  }, [twitchEmbed, props.onVideoPlay]);
-
-  // useEffect to add listener for VIDEO_READY
-  useEffect(() => {
-    if(!twitchEmbed) return;
-
-    twitchEmbed.addEventListener(root.Twitch.Embed.VIDEO_READY, () => {
-      const { autoplay, muted } = props;
-
-      var player = twitchEmbed.getPlayer();
-
-      if (muted) {
-        player.setVolume(0);
-      } else {
-        player.setVolume(1);
-      }
-
-      if (autoplay === false) {
-        player.pause();
-      }
-
-      if (props.onPlayerReady) {
-        props.onPlayerReady(player);
-      }
-    });
-  }, [twitchEmbed, props.onPlayerReady, props.autoplay, props.muted]);
-
-  const { width, height, targetClass } = props;
   return (
     <div ref={conatinerRef} style={{ width: width, height: height }} id={targetClass}></div>
   );
@@ -125,6 +156,9 @@ TwitchEmbedVideo.defaultProps = {
   height: '480',
   autoplay: true,
   muted: false,
+  onVideoPlay: () => {},
+  onPlayerReady: () => {},
+  onUserLogin: () => {},
 };
 
 export default TwitchEmbedVideo;
