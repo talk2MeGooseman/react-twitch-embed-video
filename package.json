@@ -21,8 +21,8 @@
     "release-storybook": "build-storybook -c .storybook -o .out"
   },
   "dependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "window-or-global": "^1.0.1"
   },
   "devDependencies": {

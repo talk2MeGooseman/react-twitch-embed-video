@@ -29,6 +29,8 @@ import ReactTwitchEmbedVideo from "react-twitch-embed-video"
 ## Version 2 Notes
 
 ### Updates/Changes
+- Refactor all code to use React Hooks instead of a class based component.
+- Lowest version of React supported is now 16.8 (version React Hooks was introduced in)
 - Removed onUserLogin, it appears Twitch stopped supporting this all together based off the docs
 - Added targetId property for defining mutiple video players
 
