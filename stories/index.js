@@ -36,17 +36,12 @@ storiesOf('React Twitch Embed Video', module)
     .add('2 twitch streams and dynamic update knob', () => (
         <div style={ {height: "900px"} }>
             <TwitchEmbedVideo width="500px" height="400px" channel="talk2megooseman"/>
-            <TwitchEmbedVideo width="100%" height="100%" channel={text('Second Embed Channel', 'lana_lux')} targetClass='second'/>
+            <TwitchEmbedVideo width="100%" height="100%" channel={text('Second Embed Channel', 'lana_lux')} targetId='second'/>
         </div>
     ))
-
     .add('with video play callback', () => (
         <TwitchEmbedVideo channel="talk2megooseman" onVideoPlay={ action('onVideoPlay') } />
     ))
     .add('with player ready callback', () => (
         <TwitchEmbedVideo channel="talk2megooseman" onPlayerReady={ ignoreArgsAction('onPlayerReady') } />
     ))
-    .add('with user login callback', () => (
-        <TwitchEmbedVideo channel="talk2megooseman" onUserLogin={ ignoreArgsAction('onUserLogin') } />
-    ))
-

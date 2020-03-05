@@ -1,5 +1,7 @@
 # React Twitch Embed Video
 
+[![npm version](https://badge.fury.io/js/react-twitch-embed-video.svg)](https://badge.fury.io/js/react-twitch-embed-video)
+
 Your solution to embeding the Twitch video player in your ReactJS application
 
 https://talk2megooseman.github.io/react-twitch-embed-video/
@@ -23,6 +25,16 @@ import ReactTwitchEmbedVideo from "react-twitch-embed-video"
 
 <ReactTwitchEmbedVideo channel="talk2megooseman" />
 ```
+
+## Version 2 Notes
+
+### Updates/Changes
+- Removed onUserLogin, it appears Twitch stopped supporting this all together based off the docs
+- Added targetId property for defining mutiple video players
+
+### Breaking Changes
+In version one I was mistakenly using `targetClass` prop for populating the `id` attribute for the Twitch Player. So I created a new prop called `targetId` to use to define more then one Twitch Player on your page. `targetClass` now properly sets the class for the player for proper styling.
+If you were one of the users the was creating more then on Twitch player on your page, just switch from using `targetClass` to `targetId` and things should still work properly.
 
 ## Development
 
@@ -51,6 +63,5 @@ Commands
 - `yarn build`
 - `yarn start`
 - `yarn release`
-- `yarn deploy-storybook`
 - `yarn lint`
 - `yarn lint-fix`

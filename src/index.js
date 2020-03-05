@@ -1,84 +1,21 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import root from 'window-or-global';
+import { useTwitchPlayer } from './useTwitchPlayer';
+import { useTwitchEmbedEvent } from './useTwitchEmbedEvent';
+import { usePlayerReady } from './usePlayerReady';
+import { useOnPlayCallback } from './useOnPlayCallback';
+import { loadTwitchEmbed } from './loadTwitchEmbed';
 
-const EMBED_URL = 'https://embed.twitch.tv/embed/v1.js';
-
-function loadTwitchEmbed(setTwitchEmbed) {
-  const script = document.createElement('script');
-  script.setAttribute('src', EMBED_URL);
-  // Wait for DOM to finishing loading before we try loading embed
-  script.addEventListener('load', setTwitchEmbed);
-  document.body.appendChild(script);
-}
-
-function useTwitchPlayer(props) {
-  const [ twitchEmbed, setTwitchEmbed ] = useState(null);
-
-  const setFrame = useCallback(() => {
-    const embed = new root.Twitch.Embed(props.targetClass, {
-      ...props,
-    });
-    setTwitchEmbed(embed);
-  }, [props]);
-
-  return [twitchEmbed, setFrame]
-}
-
-function useTwitchEmbedEvent(twitchEmbed) {
-  return useCallback((event, callback) => {
-    if(!twitchEmbed) return () => {};
-
-    twitchEmbed.addEventListener(event, callback);
-
-    return (() => { twitchEmbed.removeEventListener(event, callback) });
-  }, [twitchEmbed]);
-}
-
-function usePlayerReady(twitchEmbed, {onPlayerReady, autoplay, muted}) {
-  return useCallback(() => {
-    if (!twitchEmbed) return;
-
-    var player = twitchEmbed.getPlayer();
-
-    if (muted) {
-      player.setVolume(0);
-    } else {
-      player.setVolume(1);
-    }
-
-    if (autoplay === false) {
-      player.pause();
-    }
-
-    if (onPlayerReady) {
-      onPlayerReady(player);
-    }
-  }, [twitchEmbed, muted, autoplay, onPlayerReady]);
-}
-
-function useOnPlayCallback(shouldBePlaying, setShouldBePlaying, onVideoPlay, twitchEmbed) {
-  return useCallback(() => {
-    if (shouldBePlaying) {
-      setShouldBePlaying(true);
-      onVideoPlay();
-    }
-    else {
-      setShouldBePlaying(true);
-      const player = twitchEmbed.getPlayer();
-      player.pause();
-    }
-  }, [shouldBePlaying, setShouldBePlaying, onVideoPlay, twitchEmbed]);
-}
+export const EMBED_URL = 'https://embed.twitch.tv/embed/v1.js';
 
 function TwitchEmbedVideo (props) {
-  const { width, height, targetClass, onVideoPlay } = props;
+  const { width, height, targetId, targetClass } = props;
   const conatinerRef = useRef();
-  const [shouldBePlaying, setShouldBePlaying] = useState(props.autoplay);
   const [twitchEmbed, setTwitchEmbed] = useTwitchPlayer(props);
   const setTwitchEmbedEvent = useTwitchEmbedEvent(twitchEmbed);
   const playerReadyCallback = usePlayerReady(twitchEmbed, props);
-  const videoPlayCallback = useOnPlayCallback(shouldBePlaying, setShouldBePlaying, onVideoPlay, twitchEmbed);
+  const videoPlayCallback = useOnPlayCallback(twitchEmbed, props);
 
   useEffect(() => {
     if (!root.Twitch) return;
@@ -107,13 +44,15 @@ function TwitchEmbedVideo (props) {
   }, [setTwitchEmbed])
 
   return (
-    <div ref={conatinerRef} style={{ width: width, height: height }} id={targetClass}></div>
+    <div ref={conatinerRef} style={{ width: width, height: height }} className={targetClass} id={targetId}></div>
   );
 }
 
 TwitchEmbedVideo.propTypes = {
   /** Custom class name to target */
   targetClass: PropTypes.string,
+  /** Custom id to target */
+  targetId: PropTypes.string,
   /** Optional for VOD embeds; otherwise, required. Name of the chat room and channel to stream. */
   channel: PropTypes.string.isRequired,
   /** ID of a VOD to play. Chat replay is not supported. */
@@ -135,15 +74,13 @@ TwitchEmbedVideo.propTypes = {
   /** The VOD collection to play. If you use this, you also must specify an initial video in the VOD collection. All VODs are auto-played. Rechat is not supported */
   collection: PropTypes.string,
   /** Determines the screen layout. Valid values:
-          video-and-chat: Default if channel is provided. Shows both video and chat side-by-side. At narrow sizes, chat renders under the video player.
+          video-with-chat: Default if channel is provided. Shows both video and chat side-by-side. At narrow sizes, chat renders under the video player.
           * video: Default if channel is not provided. Shows only the video player (omits chat). */
-  layout: PropTypes.string,
+  layout: PropTypes.oneOf(['video', 'video-with-chat']),
   /** Specifies whether the initial state of the video is muted. Default: false. */
   muted: PropTypes.bool,
   /** The Twitch embed color theme to use. Valid values: light or dark. Default: light. */
   theme: PropTypes.string,
-  /** User has logged in callback */
-  onUserLogin: PropTypes.func,
   /** The video started playing. This callback receives an object with a sessionId property. */
   onVideoPlay: PropTypes.func,
   /** The video player is ready for API commands. This callback receives the player object. */
@@ -151,7 +88,7 @@ TwitchEmbedVideo.propTypes = {
 };
 
 TwitchEmbedVideo.defaultProps = {
-  targetClass: 'twitch-embed',
+  targetId: 'twitch-embed',
   width: '940',
   height: '480',
   autoplay: true,
