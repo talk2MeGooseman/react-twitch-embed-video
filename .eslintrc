@@ -9,7 +9,6 @@
   },
 
   "globals": {
-
   },
 
   "parserOptions": {
@@ -21,12 +20,14 @@
   },
 
   "plugins": [
-    "react"
+    "react",
+    "react-hooks"
   ],
   "extends": ["eslint:recommended", "plugin:react/recommended"],
 
   "rules": {
-    // overrides
-    "no-multiple-empty-lines": ["error", {"max": 2}]
+    "no-multiple-empty-lines": ["error", {"max": 2}],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
