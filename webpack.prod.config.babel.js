@@ -45,12 +45,9 @@ module.exports = {
         ]
     },
 
-    optimization: {
-        runtimeChunk: { name: 'manifest' }
-    },
-
     plugins: [
         // Clean dist folder
         new CleanWebpackPlugin(['dist/*.*']),
     ]
+
 };

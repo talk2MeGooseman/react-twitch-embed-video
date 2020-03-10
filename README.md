@@ -33,10 +33,13 @@ import ReactTwitchEmbedVideo from "react-twitch-embed-video"
 - Lowest version of React supported is now 16.8 (version React Hooks was introduced in)
 - Removed onUserLogin, it appears Twitch stopped supporting this all together based off the docs
 - Added targetId property for defining mutiple video players
+- `onPlayerReady` renamed to `onReady`
+- `onVideoPlay` renamed to `onPlay`
 
 ### Breaking Changes
 In version one I was mistakenly using `targetClass` prop for populating the `id` attribute for the Twitch Player. So I created a new prop called `targetId` to use to define more then one Twitch Player on your page. `targetClass` now properly sets the class for the player for proper styling.
 If you were one of the users the was creating more then on Twitch player on your page, just switch from using `targetClass` to `targetId` and things should still work properly.
+If you're using `onPlayerReady` or `onVideoPlay`, make sure to rename them to the new prop names.
 
 ## Development
 

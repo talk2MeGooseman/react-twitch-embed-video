@@ -26,14 +26,14 @@ const usePlayerReady = (EmbedApi, options) =>
       return;
     }
 
-    const { getPlayer } = EmbedApi;
     const { autoplay: isAutoPlay, muted: isMuted, onReady } = options || {};
-    const player = getPlayer();
+
+    const player = EmbedApi.getPlayer();
 
     ensureVolume(player, isMuted);
     ensureAutoPlay(player, isAutoPlay);
 
-    onReady && onReady(player);
+    onReady && onReady();
   }, [EmbedApi, options]);
 
 export { usePlayerReady };

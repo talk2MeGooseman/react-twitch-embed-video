@@ -65,12 +65,12 @@ storiesOf("React Twitch Embed Video", module)
   .add("with video play callback", () => (
     <TwitchEmbedVideo
       channel="talk2megooseman"
-      onVideoPlay={action("onVideoPlay")}
+      onPlay={action("onVideoPlay")}
     />
   ))
   .add("with player ready callback", () => (
     <TwitchEmbedVideo
       channel="talk2megooseman"
-      onPlayerReady={ignoreArgsAction("onPlayerReady")}
+      onReady={ignoreArgsAction("onPlayerReady")}
     />
   ));
