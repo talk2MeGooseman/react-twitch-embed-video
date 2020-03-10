@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React,{ useEffect, useRef } from "react";
 import { bool, func, number, oneOf, oneOfType, string } from "prop-types";
 import root from "window-or-global";
 import { useEmbedApi } from "./useEmbedApi";
@@ -110,4 +110,4 @@ TwitchEmbedVideo.defaultProps = {
   muted: false
 };
 
-export { TwitchEmbedVideo };
+export default TwitchEmbedVideo;

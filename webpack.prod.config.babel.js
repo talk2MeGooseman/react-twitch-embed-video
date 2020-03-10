@@ -3,8 +3,14 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const packageJson = require('./package.json');
 
 module.exports = {
+    mode: 'production',
     entry: {
         index: path.join(__dirname, 'src/index.js'),
+    },
+
+    externals: {
+        react: 'react',
+        reactDOM: 'react-dom'
     },
 
     output: {
@@ -12,12 +18,6 @@ module.exports = {
         filename: '[name].js',
         library: packageJson.name,
         libraryTarget: 'umd',
-    },
-
-    watchOptions: {
-        ignored: /node_modules/,
-        aggregateTimeout: 300,
-        poll: 500
     },
 
     module: {

@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { action, decorateAction } from "@storybook/addon-actions";
 import { withInfo } from "@storybook/addon-info";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
-import { TwitchEmbedVideo } from "../src/index";
+import TwitchEmbedVideo from "../src/index";
 
 const ignoreArgsAction = decorateAction([() => ["callback triggered"]]);
 
