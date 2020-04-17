@@ -33,7 +33,7 @@ const usePlayerReady = (EmbedApi, options) =>
     ensureVolume(player, isMuted);
     ensureAutoPlay(player, isAutoPlay);
 
-    onReady && onReady();
+    onReady && onReady(player);
   }, [EmbedApi, options]);
 
 export { usePlayerReady };
