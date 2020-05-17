@@ -17,9 +17,9 @@ const ensureVolume = (player, isMuted) => {
   player.setVolume(isMuted ? Volume.MUTED : Volume.AUDIBLE);
 };
 
-const usePlayerReady = (EmbedApi, options) =>
+const usePlayerReady = (Embed, options) =>
   useCallback(() => {
-    if (!EmbedApi) {
+    if (!Embed) {
       // eslint-disable-next-line no-console
       console.warn("Player not provided");
 
@@ -28,12 +28,12 @@ const usePlayerReady = (EmbedApi, options) =>
 
     const { autoplay: isAutoPlay, muted: isMuted, onReady } = options || {};
 
-    const player = EmbedApi.getPlayer();
+    const player = Embed.getPlayer();
 
     ensureVolume(player, isMuted);
     ensureAutoPlay(player, isAutoPlay);
 
     onReady && onReady(player);
-  }, [EmbedApi, options]);
+  }, [Embed, options]);
 
 export { usePlayerReady };

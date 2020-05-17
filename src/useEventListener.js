@@ -2,16 +2,16 @@ import { useCallback } from "react";
 
 const noop = () => {};
 
-const useEventListener = EmbedApi =>
+const useEventListener = Embed =>
   useCallback(
     (event, callback) => {
-      if (!EmbedApi) return noop;
+      if (!Embed) return noop;
 
-      EmbedApi.addEventListener(event, callback);
+      Embed.addEventListener(event, callback);
 
-      return () => EmbedApi.removeEventListener(event, callback);
+      return () => Embed.removeEventListener(event, callback);
     },
-    [EmbedApi]
+    [Embed]
   );
 
 export { useEventListener };

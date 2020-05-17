@@ -1,7 +1,7 @@
 import React,{ useEffect, useRef } from "react";
-import { bool, func, number, oneOf, oneOfType, string } from "prop-types";
+import { bool, func, number, oneOf, oneOfType, string, arrayOf } from "prop-types";
 import root from "window-or-global";
-import { useEmbedApi } from "./useEmbedApi";
+import { useTwitchEmbed } from "./useEmbedApi";
 import { useEventListener } from "./useEventListener";
 import { usePlayerReady } from "./usePlayerReady";
 import { usePlayerPlay } from "./usePlayerPlay";
@@ -12,10 +12,10 @@ const hasTwitchApiLoaded = () => Boolean(root?.Twitch?.Embed);
 const TwitchEmbedVideo = props => {
   const { width, height, targetId, targetClass } = props;
   const containerRef = useRef();
-  const [EmbedApi, initializeEmbedApi] = useEmbedApi(props);
-  const eventListenerFactory = useEventListener(EmbedApi);
-  const onPlayerReady = usePlayerReady(EmbedApi, props);
-  const onPlayerPlay = usePlayerPlay(EmbedApi, props);
+  const [embed, initializeEmbed] = useTwitchEmbed(props);
+  const eventListenerFactory = useEventListener(embed);
+  const onPlayerReady = usePlayerReady(embed, props);
+  const onPlayerPlay = usePlayerPlay(embed, props);
 
   useEffect(() => {
     if (!hasTwitchApiLoaded()) return;
@@ -44,14 +44,14 @@ const TwitchEmbedVideo = props => {
 
     // Check if we have Twitch in the global space and Embed is available
     if (hasTwitchApiLoaded()) {
-      initializeEmbedApi();
+      initializeEmbed();
 
       return;
     }
 
     // Initialize the Twitch embed lib if not present
-    loadEmbedApi(initializeEmbedApi);
-  }, [initializeEmbedApi]);
+    loadEmbedApi(initializeEmbed);
+  }, [initializeEmbed]);
 
   return (
     <div
@@ -90,6 +90,9 @@ TwitchEmbedVideo.propTypes = {
   onPlay: func,
   /** The video player is ready for API commands. This callback receives the player object. */
   onReady: func,
+  /** If you use the interactive embed, and your site is embedded in other locations, add a parent key to the options object used to configure the embed to indicate which domains your site is embedded on.
+   * The value should be a JavaScript array containing any domains which embed your content. */
+  parent: arrayOf(string),
   /** Custom class name to target */
   targetClass: string,
   /** Custom id to target */
