@@ -1,18 +1,18 @@
 import { useState, useCallback } from "react";
 
-const usePlayerPlay = (EmbedApi, options) => {
+const usePlayerPlay = (Embed, options) => {
   const { autoplay, onPlay } = options;
   const [shouldForcePlay, setForcePlay] = useState(autoplay);
 
   return useCallback(() => {
     if (shouldForcePlay) return onPlay && onPlay();
 
-    const player = EmbedApi.getPlayer();
+    const player = Embed.getPlayer();
 
     player.pause();
     setForcePlay(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [options, EmbedApi, setForcePlay, shouldForcePlay]);
+  }, [options, Embed, setForcePlay, shouldForcePlay]);
 };
 
 export { usePlayerPlay };
