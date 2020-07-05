@@ -41,6 +41,11 @@ In version one I was mistakenly using `targetClass` prop for populating the `id`
 If you were one of the users the was creating more then on Twitch player on your page, just switch from using `targetClass` to `targetId` and things should still work properly.
 If you're using `onPlayerReady` or `onVideoPlay`, make sure to rename them to the new prop names.
 
+## Troubleshooting
+
+* Video embed not working in Brave browser 
+  * By default Brave block all third party cookies which causes issues using the Twitch Embed Player. In order to get the player to work you either have to allow third party cookies `Setting->Additional Settings->Privacy and Security->Site Settings->Cookies` or you can add Twitch to the whitelist so you can still block other third party cookies.
+
 ## Development
 
 ### Usage
