@@ -51,7 +51,7 @@
     "cross-env": "^5.1.1",
     "eslint": "^4.9.0",
     "eslint-plugin-react": "^7.5.1",
-    "eslint-plugin-react-hooks": "^2.2.0",
+    "eslint-plugin-react-hooks": "^4.0.8",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-hot-loader": "^4.5.3",
