@@ -94,7 +94,7 @@ TwitchEmbedVideo.propTypes = {
   /** If you use the interactive embed, and your site is embedded in other locations, add a parent key to the options object used to configure the embed to indicate which domains your site is embedded on.
    * The value should be a JavaScript array containing any domains which embed your content. */
   parent: arrayOf(string),
-  /** Custom class name to target */
+  /** Custom class name for div wrapper */
   targetClass: string,
   /** Custom id to target */
   targetId: string,
