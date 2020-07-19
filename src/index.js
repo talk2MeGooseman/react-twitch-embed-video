@@ -13,6 +13,7 @@ const TwitchEmbedVideo = props => {
   const { width, height, targetId, targetClass } = props;
   const containerRef = useRef();
   const [embed, initializeEmbed] = useTwitchEmbed(props);
+
   const eventListenerFactory = useEventListener(embed);
   const onPlayerReady = usePlayerReady(embed, props);
   const onPlayerPlay = usePlayerPlay(embed, props);

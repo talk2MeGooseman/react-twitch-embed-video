@@ -4,6 +4,7 @@ import { action, decorateAction } from "@storybook/addon-actions";
 import { withInfo } from "@storybook/addon-info";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
 import TwitchEmbedVideo from "../src/index";
+import RerenderBug from "./test-components/rerender-bug";
 
 const ignoreArgsAction = decorateAction([() => ["callback triggered"]]);
 
@@ -74,4 +75,6 @@ storiesOf("React Twitch Embed Video", module)
       onReady={ignoreArgsAction("onPlayerReady")}
     />
   ))
- ;
+  .add("doesnt rerender on click", () => (
+    <RerenderBug />
+  ));

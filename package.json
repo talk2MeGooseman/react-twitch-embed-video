@@ -19,6 +19,7 @@
     "deploy": "",
     "lint": "eslint ./src",
     "start": "start-storybook -p 9001 -c .storybook",
+    "start:dev": "start-storybook -p 9001 -c .storybook-tests",
     "release-storybook": "build-storybook -c .storybook -o .out"
   },
   "dependencies": {
