@@ -1,8 +1,8 @@
-import { useCallback } from "react";
+import { useCallback } from 'react';
 
 const Volume = {
   MUTED: 0,
-  AUDIBLE: 1
+  AUDIBLE: 1,
 };
 
 const ensureAutoPlay = (player, isAutoPlay) => {
@@ -17,16 +17,14 @@ const ensureVolume = (player, isMuted) => {
   player.setVolume(isMuted ? Volume.MUTED : Volume.AUDIBLE);
 };
 
-const usePlayerReady = (Embed, options) =>
+const usePlayerReady = (Embed, { autoplay: isAutoPlay, muted: isMuted, onReady } = {}) =>
   useCallback(() => {
     if (!Embed) {
       // eslint-disable-next-line no-console
-      console.warn("Player not provided");
+      console.warn('Player not provided');
 
       return;
     }
-
-    const { autoplay: isAutoPlay, muted: isMuted, onReady } = options || {};
 
     const player = Embed.getPlayer();
 
@@ -34,6 +32,6 @@ const usePlayerReady = (Embed, options) =>
     ensureAutoPlay(player, isAutoPlay);
 
     onReady && onReady(player);
-  }, [Embed, options]);
+  }, [Embed, isMuted, isAutoPlay, onReady]);
 
 export { usePlayerReady };

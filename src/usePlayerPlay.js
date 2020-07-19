@@ -1,7 +1,6 @@
 import { useState, useCallback } from "react";
 
-const usePlayerPlay = (Embed, options) => {
-  const { autoplay, onPlay } = options;
+const usePlayerPlay = (Embed, { autoplay, onPlay }) => {
   const [shouldForcePlay, setForcePlay] = useState(autoplay);
 
   return useCallback(() => {
@@ -11,8 +10,7 @@ const usePlayerPlay = (Embed, options) => {
 
     player.pause();
     setForcePlay(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [options, Embed, setForcePlay, shouldForcePlay]);
+  }, [onPlay, Embed, setForcePlay, shouldForcePlay]);
 };
 
 export { usePlayerPlay };
