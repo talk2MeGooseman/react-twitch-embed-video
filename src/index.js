@@ -114,4 +114,4 @@ TwitchEmbedVideo.defaultProps = {
   muted: false
 };
 
-export default TwitchEmbedVideo;
+export default React.memo(TwitchEmbedVideo);

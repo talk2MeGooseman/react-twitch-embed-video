@@ -5,6 +5,7 @@ import { withInfo } from "@storybook/addon-info";
 import { withKnobs, text, select } from "@storybook/addon-knobs";
 import TwitchEmbedVideo from "../src/index";
 import RerenderBug from "./test-components/rerender-bug";
+import ChannelChange from "./test-components/channel-change";
 
 const ignoreArgsAction = decorateAction([() => ["callback triggered"]]);
 
@@ -77,4 +78,8 @@ storiesOf("React Twitch Embed Video", module)
   ))
   .add("doesnt rerender on click", () => (
     <RerenderBug />
-  ));
+  ))
+  .add("Changing channel ID properly re-renders", () => (
+    <ChannelChange />
+  ))
+  ;
