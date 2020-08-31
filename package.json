@@ -43,7 +43,7 @@
     "@storybook/preset-create-react-app": "^1.2.0",
     "@storybook/react": "^5.0.0",
     "@storybook/storybook-deployer": "^2.0.0",
-    "@storybook/theming": "^5.0.0",
+    "@storybook/theming": "^6.0.21",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^8.0.6",
     "babel-preset-react-app": "^9.0.2",
