@@ -18,11 +18,8 @@
     "release": "cross-env NODE_ENV=production webpack --p --config webpack.prod.config.babel.js",
     "deploy": "",
     "lint": "eslint ./src",
-    "start": "start-storybook -p 9001 -c .storybook",
-    "start:dev": "start-storybook -p 9001 -c .storybook-tests",
-    "release-storybook": "build-storybook -c .storybook -o .out",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "start": "start-storybook -p 9001",
+    "release-storybook": "build-storybook -o .out"
   },
   "dependencies": {
     "window-or-global": "^1.0.1"
