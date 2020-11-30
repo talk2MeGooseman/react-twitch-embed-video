@@ -19,8 +19,14 @@
     "deploy": "",
     "lint": "eslint ./src",
     "start": "start-storybook -p 9001",
-    "release-storybook": "build-storybook -o .out"
+    "release-storybook": "build-storybook -o .out",
+    "size": "size-limit --why"
   },
+  "size-limit": [
+    {
+      "path": "index.js"
+    }
+  ],
   "dependencies": {
     "window-or-global": "^1.0.1"
   },
@@ -33,6 +39,7 @@
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
+    "@size-limit/preset-small-lib": "^4.9.0",
     "@storybook/addon-essentials": "^6.1.8",
     "@storybook/preset-create-react-app": "^1.2.0",
     "@storybook/react": "^6.1.8",
@@ -50,6 +57,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hot-loader": "^4.5.3",
+    "size-limit": "^4.9.0",
     "style-loader": "^0.19.0",
     "webpack": "^4.0.0",
     "webpack-cli": "^3.3.11",
