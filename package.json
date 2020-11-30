@@ -47,7 +47,7 @@
     "@storybook/theming": "^6.0.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^8.0.6",
-    "babel-preset-react-app": "^9.0.2",
+    "babel-preset-react-app": "^10.0.0",
     "clean-webpack-plugin": "^0.1.16",
     "core-js": "3",
     "cross-env": "^5.1.1",
