@@ -8,7 +8,7 @@ interface IAddEventListener {
 
 const noop = () => { return }
 
-const useEventListener = (embedObj: ITwitchEmbed): IAddEventListener =>
+const useEventListener = (embedObj: ITwitchEmbed | undefined): IAddEventListener =>
   useCallback(
     (event, callback) => {
       if (!embedObj) return noop

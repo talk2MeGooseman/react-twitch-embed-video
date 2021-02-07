@@ -1,24 +1,28 @@
 import { useCallback } from 'react'
-import { EmbedParameters, TwitchEmbedInterface } from './useEmbedApi'
+import { IChannelEmbedParameters, IPlayerInterface, ITwitchEmbed, IVodCollectionEmbedParameters, IVodEmbedParameters } from './useEmbedApi'
 
 const Volume = {
   MUTED: 0,
   AUDIBLE: 1
 }
 
-const ensureAutoPlay = (player, isAutoPlay) => {
+const ensureAutoPlay = (player: IPlayerInterface, isAutoPlay?: boolean) => {
   // If the player should be paused on load then
   // then lets pause the player
   !isAutoPlay && player.pause()
 }
 
-const ensureVolume = (player, isMuted) => {
+const ensureVolume = (player: IPlayerInterface, isMuted?: boolean) => {
   // If the player was set to be muted on load
   // then lets make sure the volume is set to 0
   player.setVolume(isMuted ? Volume.MUTED : Volume.AUDIBLE)
 }
 
-const usePlayerReady = (Embed: TwitchEmbedInterface, { autoplay: isAutoPlay, muted: isMuted, onReady }: EmbedParameters) =>
+interface IReadyAction {
+  (): void;
+}
+
+const usePlayerReady = (Embed: ITwitchEmbed | undefined, { autoplay: isAutoPlay, muted: isMuted, onReady }: (IChannelEmbedParameters | IVodCollectionEmbedParameters | IVodEmbedParameters)): IReadyAction =>
   useCallback(() => {
     if (!Embed) {
       // eslint-disable-next-line no-console

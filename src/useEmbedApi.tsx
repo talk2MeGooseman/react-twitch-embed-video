@@ -4,10 +4,6 @@ import { tuplify } from './utils'
 
 /* eslint-disable no-unused-vars */
 interface IVideoPlayEventCallback {
-  (sessionId: string): void;
-}
-
-interface IVideoReadyEventCallback {
   (): void;
 }
 
@@ -23,7 +19,7 @@ interface IPlaybackStatsInterface {
   videoResolution: string
 }
 
-interface IPlayerInterface {
+export interface IPlayerInterface {
   /** Disables display of Closed Captions. */
   disableCaptions():void
   /**  */
@@ -55,6 +51,10 @@ interface IPlayerInterface {
   getQuality(): string
   getVideo(): string
   isPaused(): boolean
+}
+
+interface IVideoReadyEventCallback {
+  (player: IPlayerInterface): void;
 }
 
 interface IBaseEmbedParameters {
