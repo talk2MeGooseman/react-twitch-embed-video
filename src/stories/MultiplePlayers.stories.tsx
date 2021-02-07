@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable react/prop-types */
 import React from 'react'
 
@@ -23,7 +24,7 @@ export default {
   }
 }
 
-export const MultiplePlayers = ({ player1Channel, player2Channel }) => (
+export const MultiplePlayers = ({ player1Channel, player2Channel } : { player1Channel: string, player2Channel: string }) => (
   <React.Fragment>
     <TwitchEmbedVideo
       width="500px"

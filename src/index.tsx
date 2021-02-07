@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react'
-// import { bool, func, number, oneOf, oneOfType, string, arrayOf } from 'prop-types'
 import root from 'window-or-global'
 import { IChannelEmbedParameters, ITwitchWindow, IVodCollectionEmbedParameters, IVodEmbedParameters, useTwitchEmbed } from './useEmbedApi'
 import { useEventListener } from './useEventListener'
@@ -10,7 +9,7 @@ import { DEFAULT_HEIGHT, DEFAULT_TARGET_ID, DEFAULT_WIDTH } from './utils'
 
 const hasTwitchApiLoaded = () => Boolean((root as unknown as ITwitchWindow)?.Twitch?.Embed)
 
-const TwitchEmbedVideo = (props: IChannelEmbedParameters | IVodCollectionEmbedParameters | IVodEmbedParameters  ) => {
+const TwitchEmbedVideo = (props: IChannelEmbedParameters | IVodCollectionEmbedParameters | IVodEmbedParameters ) => {
   const { width, height, targetId, targetClass } = props
   const containerRef = useRef<HTMLDivElement>(null)
   const [embed, initializeEmbed] = useTwitchEmbed(props)

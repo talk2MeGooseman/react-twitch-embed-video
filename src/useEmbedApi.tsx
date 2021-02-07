@@ -89,8 +89,8 @@ interface IBaseEmbedParameters {
    * Example parent parameter: ["streamernews.example.com", "embed.example.com"]. */
   parent?: string[]
   /** Custom class name for div wrapper */
-  targetClass: string
-  /** Custom id to target */
+  targetClass?: string
+  /** Custom id to target, used if you're going to have multiple players on the page */
   targetId?: string
   /** The Twitch embed color theme to use.
    *
