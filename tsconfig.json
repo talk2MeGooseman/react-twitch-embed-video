@@ -1,16 +1,20 @@
 
 {
     "compilerOptions": {
+        "esModuleInterop": true, /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
         "outDir": "./dist/",        // path to output directory
         "sourceMap": true,          // allow sourcemap support
+        "strict": true,
         "strictNullChecks": true,   // enable strict null checks as a best practice
-        "module": "es6",            // specify module code generation
+        "module": "commonjs",       // specify module code generation
         "jsx": "react",             // use typescript to transpile jsx to js
         "target": "es5",            // specify ECMAScript target version
-        "allowJs": true             // allow a partial TypeScript and JavaScript codebase
-
+        "allowJs": true,             // allow a partial TypeScript and JavaScript codebase
+        "skipLibCheck": true,                     /* Skip type checking of declaration files. */
+        "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
     },
     "include": [
         "./src/"
-    ]
+    ],
+    "files": ["./src/globals"]
 }
