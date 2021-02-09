@@ -1,14 +1,16 @@
-/* eslint-disable no-unused-vars */
 import { useCallback } from 'react'
+
 import { ITwitchEmbed } from './useEmbedApi'
 
 interface IAddEventListener {
-  (event: string, callback: () => void): () => void;
+  (event: string, callback: () => void): () => void
 }
 
-const noop = () => { return }
+const noop = (): void => {}
 
-const useEventListener = (embedObj: ITwitchEmbed | undefined): IAddEventListener =>
+const useEventListener = (
+  embedObj: ITwitchEmbed | undefined,
+): IAddEventListener =>
   useCallback(
     (event, callback) => {
       if (!embedObj) return noop
@@ -17,7 +19,7 @@ const useEventListener = (embedObj: ITwitchEmbed | undefined): IAddEventListener
 
       return () => embedObj.removeEventListener(event, callback)
     },
-    [embedObj]
+    [embedObj],
   )
 
 export { useEventListener }
