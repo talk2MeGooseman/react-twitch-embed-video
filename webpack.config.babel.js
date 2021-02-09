@@ -1,12 +1,12 @@
-const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const packageJson = require('./package.json');
+const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const packageJson = require('./package.json')
 
 module.exports = {
   mode: 'development',
   entry: {
-    index: path.join(__dirname, 'src/index.js'),
+    index: path.join(__dirname, 'src/index.tsx'),
   },
 
   output: {
@@ -57,10 +57,10 @@ module.exports = {
   },
 
   plugins: [
-      // Clean dist folder
-      new CleanWebpackPlugin(),
-      new ForkTsCheckerWebpackPlugin(),
+    // Clean dist folder
+    new CleanWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin(),
   ],
 
   devtool: 'source-map',
-};
+}

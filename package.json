@@ -15,7 +15,7 @@
   "homepage": "https://talk2megooseman.github.io/react-twitch-embed-video/",
   "scripts": {
     "build": "cross-env NODE_ENV=development webpack --config webpack.config.babel.js",
-    "release": "cross-env NODE_ENV=production webpack --p --config webpack.prod.config.babel.js",
+    "release": "cross-env NODE_ENV=production webpack --config webpack.prod.config.babel.js",
     "deploy": "",
     "lint": "eslint --color --ext .js,.md,.ts,.tsx src",
     "start": "start-storybook -p 9001",
