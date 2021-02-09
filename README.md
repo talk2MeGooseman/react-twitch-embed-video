@@ -43,7 +43,7 @@ If you're using `onPlayerReady` or `onVideoPlay`, make sure to rename them to th
 
 ## Troubleshooting
 
-* Video embed not working in Brave browser
+- Video embed not working in Brave browser
   * By default Brave block all third party cookies which causes issues using the Twitch Embed Player. In order to get the player to work you either have to allow third party cookies `Setting->Additional Settings->Privacy and Security->Site Settings->Cookies` or you can add Twitch to the whitelist so you can still block other third party cookies.
 
 ## Development
