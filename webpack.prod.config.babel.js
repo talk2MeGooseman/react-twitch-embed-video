@@ -1,53 +1,56 @@
-const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const packageJson = require('./package.json');
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable import/no-extraneous-dependencies */
+const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const packageJson = require('./package.json')
 
 module.exports = {
-    mode: 'production',
-    entry: {
-        index: path.join(__dirname, 'src/index.js'),
-    },
+  mode: 'production',
+  entry: {
+    index: path.join(__dirname, 'src/index.tsx'),
+  },
 
-    externals: {
-        react: 'react',
-        reactDOM: 'react-dom'
-    },
+  externals: {
+    react: 'react',
+    'react-dom': 'reactDOM',
+  },
 
-    output: {
-        path: path.join(__dirname, 'dist'),
-        filename: '[name].js',
-        library: packageJson.name,
-        libraryTarget: 'umd',
-    },
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].js',
+    library: packageJson.name,
+    libraryTarget: 'umd',
+  },
 
-    module: {
-        rules: [
-            {
-                test: /.jsx?$/,
-                exclude: /node_modules/,
-                include: path.join(__dirname, 'src'),
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            babelrc: false,
-                            presets: [
-                                'react-app',
-                            ],
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.(css)$/,
-                loader: 'style-loader!css-loader',
-            },
-        ]
-    },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+  },
 
-    plugins: [
-        // Clean dist folder
-        new CleanWebpackPlugin(['dist/*.*']),
-    ]
+  module: {
+    rules: [
+      {
+        test: /\.(t|j)sx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          // disable type checker - we will use it in fork plugin
+          transpileOnly: true,
+        },
+      },
 
-};
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'source-map-loader',
+      },
+    ],
+  },
+
+  plugins: [
+    // Clean dist folder
+    new CleanWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin(),
+  ],
+}
