@@ -1,15 +1,28 @@
 import React, { useEffect, useRef } from 'react'
 import root from 'window-or-global'
-import { IChannelEmbedParameters, ITwitchWindow, IVodCollectionEmbedParameters, IVodEmbedParameters, useTwitchEmbed } from './useEmbedApi'
-import { useEventListener } from './useEventListener'
-import { usePlayerReady } from './usePlayerReady'
-import { usePlayerPlay } from './usePlayerPlay'
+
 import { loadEmbedApi } from './loadEmbedApi'
+import {
+  IChannelEmbedParameters,
+  ITwitchWindow,
+  IVodCollectionEmbedParameters,
+  IVodEmbedParameters,
+  useTwitchEmbed,
+} from './useEmbedApi'
+import { useEventListener } from './useEventListener'
+import { usePlayerPlay } from './usePlayerPlay'
+import { usePlayerReady } from './usePlayerReady'
 import { DEFAULT_HEIGHT, DEFAULT_TARGET_ID, DEFAULT_WIDTH } from './utils'
 
-const hasTwitchApiLoaded = () => Boolean((root as unknown as ITwitchWindow)?.Twitch?.Embed)
+const hasTwitchApiLoaded = () =>
+  Boolean(((root as unknown) as ITwitchWindow)?.Twitch?.Embed)
 
-const TwitchEmbedVideo = (props: IChannelEmbedParameters | IVodCollectionEmbedParameters | IVodEmbedParameters ) => {
+const TwitchEmbedVideo = (
+  props:
+    | IChannelEmbedParameters
+    | IVodCollectionEmbedParameters
+    | IVodEmbedParameters,
+) => {
   const { width, height, targetId, targetClass } = props
   const containerRef = useRef<HTMLDivElement>(null)
   const [embed, initializeEmbed] = useTwitchEmbed(props)
@@ -21,16 +34,19 @@ const TwitchEmbedVideo = (props: IChannelEmbedParameters | IVodCollectionEmbedPa
   useEffect(() => {
     if (!hasTwitchApiLoaded()) return
 
-    const { VIDEO_PLAY, VIDEO_READY } = (root as unknown as ITwitchWindow).Twitch.Embed
+    const {
+      VIDEO_PLAY,
+      VIDEO_READY,
+    } = ((root as unknown) as ITwitchWindow).Twitch.Embed
 
     const removeVideoPlayListener = eventListenerFactory(
       VIDEO_PLAY,
-      onPlayerPlay
+      onPlayerPlay,
     )
 
     const removePlayerReadyEventListener = eventListenerFactory(
       VIDEO_READY,
-      onPlayerReady
+      onPlayerReady,
     )
 
     return () => {
@@ -41,7 +57,8 @@ const TwitchEmbedVideo = (props: IChannelEmbedParameters | IVodCollectionEmbedPa
 
   // Builds the Twitch Embed
   useEffect(() => {
-    if (containerRef && containerRef.current) containerRef.current.innerHTML = ''
+    if (containerRef && containerRef.current)
+      containerRef.current.innerHTML = ''
 
     // Check if we have Twitch in the global space and Embed is available
     if (hasTwitchApiLoaded()) {
@@ -57,10 +74,10 @@ const TwitchEmbedVideo = (props: IChannelEmbedParameters | IVodCollectionEmbedPa
   return (
     <div
       ref={containerRef}
-      style={{ width: width, height: height }}
+      style={{ width, height }}
       className={targetClass}
       id={targetId}
-    ></div>
+    />
   )
 }
 
@@ -69,7 +86,7 @@ TwitchEmbedVideo.defaultProps = {
   width: DEFAULT_HEIGHT,
   height: DEFAULT_WIDTH,
   autoplay: true,
-  muted: false
+  muted: false,
 }
 
 export default React.memo(TwitchEmbedVideo)

@@ -1,2 +1,2 @@
-export * from "./tuplify"
 export * from './constants'
+export * from './tuplify'
