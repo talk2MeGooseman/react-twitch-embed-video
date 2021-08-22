@@ -173,7 +173,7 @@ const useTwitchEmbed = (
   const [embed, setEmbed] = useState<ITwitchEmbed>()
 
   const initialize = useCallback(() => {
-    const twitchEmbed = new ((root as unknown) as ITwitchWindow).Twitch.Embed(
+    const twitchEmbed = new (root as unknown as ITwitchWindow).Twitch.Embed(
       props.targetId ?? '',
       {
         ...props,

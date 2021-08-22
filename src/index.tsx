@@ -15,7 +15,7 @@ import { usePlayerReady } from './usePlayerReady'
 import { DEFAULT_HEIGHT, DEFAULT_TARGET_ID, DEFAULT_WIDTH } from './utils'
 
 const hasTwitchApiLoaded = () =>
-  Boolean(((root as unknown) as ITwitchWindow)?.Twitch?.Embed)
+  Boolean((root as unknown as ITwitchWindow)?.Twitch?.Embed)
 
 const TwitchEmbedVideo = (
   props:
@@ -34,10 +34,8 @@ const TwitchEmbedVideo = (
   useEffect(() => {
     if (!hasTwitchApiLoaded()) return
 
-    const {
-      VIDEO_PLAY,
-      VIDEO_READY,
-    } = ((root as unknown) as ITwitchWindow).Twitch.Embed
+    const { VIDEO_PLAY, VIDEO_READY } = (root as unknown as ITwitchWindow)
+      .Twitch.Embed
 
     const removeVideoPlayListener = eventListenerFactory(
       VIDEO_PLAY,
