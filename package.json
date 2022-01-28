@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.0",
-    "@size-limit/preset-small-lib": "^4.9.0",
+    "@size-limit/preset-small-lib": "^7.0.5",
     "@storybook/addon-essentials": "^6.1.17",
     "@storybook/preset-create-react-app": "^3.1.5",
     "@storybook/react": "^6.1.17",
@@ -86,7 +86,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hot-loader": "^4.13.0",
-    "size-limit": "^4.9.0",
+    "size-limit": "^7.0.5",
     "source-map-loader": "^2.0.0",
     "ts-loader": "^8.0.14",
     "ts-migrate": "^0.1.13",
