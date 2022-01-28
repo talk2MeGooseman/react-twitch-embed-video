@@ -33,8 +33,6 @@ module.exports = {
         loader: 'ts-loader',
         exclude: /node_modules/,
         options: {
-          // disable type checker - we will use it in fork plugin
-          transpileOnly: true,
         },
       },
 
