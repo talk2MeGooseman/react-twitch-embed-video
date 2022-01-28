@@ -5,6 +5,7 @@
   "license": "MIT",
   "author": "Erik Guzman",
   "main": "index.js",
+  "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/talk2MeGooseman/react-twitch-embed-video.git"
