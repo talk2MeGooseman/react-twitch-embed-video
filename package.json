@@ -82,7 +82,7 @@
     "eslint-plugin-switch-case": "^1.1.2",
     "eslint-plugin-unicorn": "^40.1.0",
     "fork-ts-checker-webpack-plugin": "^6.1.0",
-    "loader-utils": "^2.0.0",
+    "loader-utils": "^3.2.1",
     "prettier": "^2.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
