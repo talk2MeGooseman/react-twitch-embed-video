@@ -46,13 +46,13 @@ module.exports = {
   },
 
   externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
+    react: 'react',
+    'react-dom': 'reactDOM',
   },
 
-  optimization: {
-    runtimeChunk: { name: 'manifest' },
-  },
+  // optimization: {
+  //   runtimeChunk: { name: 'manifest' },
+  // },
 
   plugins: [
     // Clean dist folder
