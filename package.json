@@ -32,8 +32,8 @@
     "window-or-global": "^1.0.1"
   },
   "peerDependencies": {
-    "react": "17.0.x",
-    "react-dom": "17.0.x"
+    "react": ">= 17.0.0",
+    "react-dom": ">= 17.0.0"
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.0",
@@ -43,8 +43,8 @@
     "@storybook/react": "^6.1.17",
     "@storybook/storybook-deployer": "^2.8.7",
     "@storybook/theming": "^6.1.17",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
     "@types/window-or-global": "^1.0.4",
     "@typescript-eslint/eslint-plugin": "^4.14.0",
     "@typescript-eslint/parser": "^4.14.0",
@@ -84,8 +84,8 @@
     "fork-ts-checker-webpack-plugin": "^6.1.0",
     "loader-utils": "^2.0.0",
     "prettier": "^2.2.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-hot-loader": "^4.13.0",
     "size-limit": "^4.9.0",
     "source-map-loader": "^2.0.0",
