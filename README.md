@@ -54,11 +54,12 @@ If you're using `onPlayerReady` or `onVideoPlay`, make sure to rename them to th
     > yarn
 
 2. Check **_package.json_** so that the information is correct.
-3. Start stroybook and start coding!
+3. Start storybook and start coding!
     > yarn start
 
-4. Bundle with `yarn build`
-5. To test if it works correctly in another project you can use npm `npm install -S ../react-twitch-embed-video` Note the relative path
+4. Bundle with `yarn build --watch`
+5. Make project available locally by using `npm link`
+6. To test if it works correctly in another project you can use npm `npm link react-twitch-embed-video`
 
 #### Extra
 * If you want to run eslint:
