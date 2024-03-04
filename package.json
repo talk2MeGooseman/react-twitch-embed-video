@@ -1,10 +1,21 @@
 {
   "name": "react-twitch-embed-video",
-  "description": "Allows you to easily embed a twitch video in your ReactJS application",
   "version": "3.0.3",
+  "description": "Allows you to easily embed a twitch video in your ReactJS application",
   "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
   "author": "Erik Guzman",
-  "main": "index.js",
+  "main": "./dist/react-twitch-embed-video.umd.cjs",
+  "module": "./dist/react-twitch-embed-video.js",
+  "exports": {
+    ".": {
+      "import": "./dist/react-twitch-embed-video.js",
+      "require": "./dist/react-twitch-embed-video.umd.cjs"
+    }
+  },
   "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
@@ -15,8 +26,8 @@
   },
   "homepage": "https://talk2megooseman.github.io/react-twitch-embed-video/",
   "scripts": {
-    "build": "cross-env NODE_ENV=development webpack --config webpack.config.babel.js",
-    "release": "cross-env NODE_ENV=production webpack --config webpack.prod.config.babel.js",
+    "build": "vite build",
+    "release": "vite build",
     "deploy": "",
     "lint": "eslint --color --ext .js,.md,.ts,.tsx src",
     "start": "start-storybook -p 9001",
@@ -48,11 +59,10 @@
     "@types/window-or-global": "^1.0.4",
     "@typescript-eslint/eslint-plugin": "^4.14.0",
     "@typescript-eslint/parser": "^4.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
-    "clean-webpack-plugin": "^3.0.0",
     "core-js": "3",
-    "cross-env": "^7.0.0",
     "eslint": "^7.18.0",
     "eslint-config-adjunct": "^4.11.1",
     "eslint-config-airbnb": "^18.2.1",
@@ -81,19 +91,14 @@
     "eslint-plugin-sonarjs": "^0.5.0",
     "eslint-plugin-switch-case": "^1.1.2",
     "eslint-plugin-unicorn": "^40.1.0",
-    "fork-ts-checker-webpack-plugin": "^6.1.0",
     "loader-utils": "^2.0.0",
     "prettier": "^2.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-loader": "^4.13.0",
     "size-limit": "^4.9.0",
-    "source-map-loader": "^2.0.0",
-    "ts-loader": "^9.2.6",
-    "ts-migrate": "^0.1.13",
     "typescript": "^4.1.3",
-    "webpack": "^5.17.0",
-    "webpack-cli": "^4.4.0",
-    "webpack-dev-server": "^3.11.2"
+    "vite": "^5.1.4",
+    "vite-plugin-dts": "^3.7.3"
   }
 }
