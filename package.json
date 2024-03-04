@@ -1,7 +1,7 @@
 {
   "name": "react-twitch-embed-video",
   "description": "Allows you to easily embed a twitch video in your ReactJS application",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "license": "MIT",
   "author": "Erik Guzman",
   "main": "index.js",
