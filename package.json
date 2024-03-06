@@ -1,46 +1,38 @@
 {
   "name": "react-twitch-embed-video",
   "version": "3.0.3",
+  "author": "Erik Guzman <erik.guzman@guzman.codes>",
   "description": "Allows you to easily embed a twitch video in your ReactJS application",
+  "bugs": {
+    "url": "https://github.com/talk2MeGooseman/react-twitch-embed-video/issues"
+  },
+  "homepage": "https://talk2megooseman.github.io/react-twitch-embed-video/",
   "license": "MIT",
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "src",
+    "tsconfig.json"
   ],
-  "author": "Erik Guzman",
-  "main": "./dist/react-twitch-embed-video.umd.cjs",
-  "module": "./dist/react-twitch-embed-video.js",
+  "main": "dist/react-twitch-embed-video.umd.cjs",
+  "module": "dist/react-twitch-embed-video.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/react-twitch-embed-video.js",
       "require": "./dist/react-twitch-embed-video.umd.cjs"
     }
   },
-  "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/talk2MeGooseman/react-twitch-embed-video.git"
   },
-  "bugs": {
-    "url": "https://github.com/talk2MeGooseman/react-twitch-embed-video/issues"
-  },
-  "homepage": "https://talk2megooseman.github.io/react-twitch-embed-video/",
   "scripts": {
     "build": "vite build",
-    "release": "vite build",
-    "deploy": "",
+    "dev": "storybook dev -p 9001",
     "lint": "eslint --color --ext .js,.md,.ts,.tsx src",
-    "start": "storybook dev -p 9001",
     "release-storybook": "storybook build -o .out",
-    "size": "size-limit --why"
-  },
-  "size-limit": [
-    {
-      "path": "index.js"
-    }
-  ],
-  "dependencies": {
-    "window-or-global": "^1.0.1"
+    "release": "vite build"
   },
   "peerDependencies": {
     "react": ">= 17.0.0",
@@ -99,7 +91,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-loader": "^4.13.0",
-    "size-limit": "^4.9.0",
     "storybook": "^7.6.17",
     "typescript": "^4.1.3",
     "vite": "^5.1.4",
