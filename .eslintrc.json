@@ -12,6 +12,7 @@
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "pii/no-phone-number": "off",
-        "react/function-component-definition": "off"
+        "react/function-component-definition": "off",
+        "import/no-extraneous-dependencies": "off"
     }
 }

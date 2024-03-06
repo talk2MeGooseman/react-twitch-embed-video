@@ -50,7 +50,10 @@ const usePlayerReady = (
     ensureVolume(player, isMuted)
     ensureAutoPlay(player, isAutoPlay)
 
-    onReady && onReady(player)
+    if (onReady) {
+      return onReady(player)
+    }
+    return null
   }, [Embed, isMuted, isAutoPlay, onReady])
 
 export { usePlayerReady }
