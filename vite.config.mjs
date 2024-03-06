@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 /* eslint-disable eslint-comments/disable-enable-pair */
 /* eslint-disable import/no-extraneous-dependencies */
 import react from '@vitejs/plugin-react'
@@ -25,5 +26,10 @@ export default defineConfig({
         }
       },
     },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/test/setup.ts',
   },
 })

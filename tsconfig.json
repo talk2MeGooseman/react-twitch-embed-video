@@ -5,16 +5,18 @@
         "sourceMap": true,          // allow sourcemap support
         "strict": true,
         "strictNullChecks": true,   // enable strict null checks as a best practice
-        "module": "commonjs",       // specify module code generation
+        "module": "CommonJS",       // specify module code generation
         "jsx": "react",             // use typescript to transpile jsx to js
         "target": "es5",            // specify ECMAScript target version
         "allowJs": true,             // allow a partial TypeScript and JavaScript codebase
         "skipLibCheck": true,                     /* Skip type checking of declaration files. */
         "forceConsistentCasingInFileNames": true,  /* Disallow inconsistently-cased references to the same file. */
-        "declaration": true
+        "declaration": true,
+        "types": ["vitest/globals"],
     },
     "include": [
-        "./src/"
+        "./src/",
+        ".src/test/setup.ts"
     ],
     "files": ["./src/global.d.ts"]
 }
