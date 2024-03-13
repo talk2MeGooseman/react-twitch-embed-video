@@ -1,8 +1,9 @@
-name: Build and Release Tagged Version
+name: Lint Code and Verify
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - development
 
 jobs:
   build:
@@ -27,18 +28,7 @@ jobs:
     - name: Build Storybook
       run: |
         yarn release-storybook
-    # Switch to use https://github.com/actions/deploy-pages
-    # - name: Publish to Github Pages
-    #   uses: maxheld83/ghpages@v0.2.1
-    #   env:
-    #     GH_PAT: ${{ secrets.GH_PAT }}
-    #     BUILD_DIR: ".out/"
 
     - name: Build Package Release
       run: |
         yarn release
-
-    - run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN}}
-
