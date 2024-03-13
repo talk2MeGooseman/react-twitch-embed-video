@@ -5,36 +5,37 @@ import {
   ITwitchEmbed,
   IVodCollectionEmbedParameters,
   IVodEmbedParameters,
-} from './useEmbedApi'
+} from './useTwitchEmbed'
 
 interface IPlayAction {
   (): void
 }
 
 const usePlayerPlay = (
-  Embed: ITwitchEmbed | undefined,
+  embedObj: ITwitchEmbed | undefined,
   {
     autoplay,
     onPlay,
-  }:
+  }: Partial<
     | IChannelEmbedParameters
     | IVodCollectionEmbedParameters
-    | IVodEmbedParameters,
+    | IVodEmbedParameters
+  >,
 ): IPlayAction => {
   const [shouldForcePlay, setForcePlay] = useState<boolean | undefined>(
     autoplay,
   )
 
   return useCallback(() => {
-    if (!Embed) return null
+    if (!embedObj) return
 
     if (shouldForcePlay) return onPlay && onPlay()
 
-    const player = Embed.getPlayer()
+    const player = embedObj.getPlayer()
 
     player.pause()
     setForcePlay(true)
-  }, [onPlay, Embed, setForcePlay, shouldForcePlay])
+  }, [onPlay, embedObj, setForcePlay, shouldForcePlay])
 }
 
 export { usePlayerPlay }

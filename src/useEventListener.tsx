@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import { ITwitchEmbed } from './useEmbedApi'
+import { ITwitchEmbed } from './useTwitchEmbed'
 
 interface IAddEventListener {
   (event: string, callback: () => void): () => void
