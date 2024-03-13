@@ -5,7 +5,7 @@ import {
   IChannelEmbedParameters,
   IVodCollectionEmbedParameters,
   IVodEmbedParameters,
-} from '../useEmbedApi'
+} from '../useTwitchEmbed'
 
 export default {
   title: 'VOD Example',

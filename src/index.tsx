@@ -2,16 +2,16 @@ import React, { useEffect, useRef } from 'react'
 import root from 'window-or-global'
 
 import { loadEmbedApi } from './loadEmbedApi'
+import { useEventListener } from './useEventListener'
+import { usePlayerPlay } from './usePlayerPlay'
+import { usePlayerReady } from './usePlayerReady'
 import {
   IChannelEmbedParameters,
   ITwitchWindow,
   IVodCollectionEmbedParameters,
   IVodEmbedParameters,
   useTwitchEmbed,
-} from './useEmbedApi'
-import { useEventListener } from './useEventListener'
-import { usePlayerPlay } from './usePlayerPlay'
-import { usePlayerReady } from './usePlayerReady'
+} from './useTwitchEmbed'
 import { DEFAULT_HEIGHT, DEFAULT_TARGET_ID, DEFAULT_WIDTH } from './utils'
 
 const hasTwitchApiLoaded = () =>

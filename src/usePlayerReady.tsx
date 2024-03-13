@@ -1,59 +1,40 @@
 import { useCallback } from 'react'
 
-import {
+import type {
   IChannelEmbedParameters,
-  IPlayerInterface,
   ITwitchEmbed,
   IVodCollectionEmbedParameters,
   IVodEmbedParameters,
-} from './useEmbedApi'
-
-const Volume = {
-  MUTED: 0,
-  AUDIBLE: 1,
-}
-
-const ensureAutoPlay = (
-  player: IPlayerInterface,
-  isAutoPlay?: boolean,
-): unknown => !isAutoPlay && player.pause()
-
-const ensureVolume = (player: IPlayerInterface, isMuted?: boolean): void => {
-  player.setVolume(isMuted ? Volume.MUTED : Volume.AUDIBLE)
-}
+} from './useTwitchEmbed'
+import { enforceAutoPlay, enforceVolume } from './utils'
 
 interface IReadyAction {
   (): void
 }
 
 const usePlayerReady = (
-  Embed: ITwitchEmbed | undefined,
+  embedObj: ITwitchEmbed | undefined,
   {
     autoplay: isAutoPlay,
     muted: isMuted,
     onReady,
-  }:
+  }: Partial<
     | IChannelEmbedParameters
     | IVodCollectionEmbedParameters
-    | IVodEmbedParameters,
+    | IVodEmbedParameters
+  >,
 ): IReadyAction =>
   useCallback(() => {
-    if (!Embed) {
-      // eslint-disable-next-line no-console
-      console.warn('Player not provided')
+    if (!embedObj) return
 
-      return
-    }
+    const player = embedObj.getPlayer()
 
-    const player = Embed.getPlayer()
-
-    ensureVolume(player, isMuted)
-    ensureAutoPlay(player, isAutoPlay)
+    enforceVolume(player, isMuted)
+    enforceAutoPlay(player, isAutoPlay)
 
     if (onReady) {
       return onReady(player)
     }
-    return null
-  }, [Embed, isMuted, isAutoPlay, onReady])
+  }, [embedObj, isMuted, isAutoPlay, onReady])
 
 export { usePlayerReady }

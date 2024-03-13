@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react'
 
-import type { ITwitchEmbed } from './useEmbedApi'
 import { useEventListener } from './useEventListener'
+import type { ITwitchEmbed } from './useTwitchEmbed'
 
 describe('useEventListener', () => {
   const addEventListenerMock = vi.fn()
@@ -29,7 +29,9 @@ describe('useEventListener', () => {
   })
 
   it('removes the event listener from the embed object', () => {
-    const { result } = renderHook(() => useEventListener(embedObj))
+    const { result } = renderHook(() =>
+      useEventListener(embedObj as ITwitchEmbed),
+    )
 
     const cleanUpFunc = result.current(EVENT, callback)
     cleanUpFunc()
