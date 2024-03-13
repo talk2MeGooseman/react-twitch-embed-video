@@ -1,6 +1,6 @@
 {
   "name": "react-twitch-embed-video",
-  "version": "3.0.3",
+  "version": "3.1.0",
   "author": "Erik Guzman <erik.guzman@guzman.codes>",
   "description": "Allows you to easily embed a twitch video in your ReactJS application",
   "bugs": {
@@ -31,6 +31,7 @@
     "build": "vite build",
     "dev": "storybook dev -p 9001",
     "lint": "eslint --color --ext .js,.md,.ts,.tsx src",
+    "lint:fix": "eslint --fix --color --ext .js,.md,.ts,.tsx src",
     "release-storybook": "storybook build -o .out",
     "release": "vite build",
     "test": "vitest",
