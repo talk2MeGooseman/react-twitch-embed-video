@@ -26,20 +26,7 @@ import ReactTwitchEmbedVideo from "react-twitch-embed-video"
 <ReactTwitchEmbedVideo channel="talk2megooseman" />
 ```
 
-## Version 2 Notes
-
-### Updates/Changes
-- Refactor all code to use React Hooks instead of a class based component.
-- Lowest version of React supported is now 16.8 (version React Hooks was introduced in)
-- Removed onUserLogin, it appears Twitch stopped supporting this all together based off the docs
-- Added targetId property for defining mutiple video players
-- `onPlayerReady` renamed to `onReady`
-- `onVideoPlay` renamed to `onPlay`
-
-### Breaking Changes
-In version one I was mistakenly using `targetClass` prop for populating the `id` attribute for the Twitch Player. So I created a new prop called `targetId` to use to define more then one Twitch Player on your page. `targetClass` now properly sets the class for the player for proper styling.
-If you were one of the users the was creating more then on Twitch player on your page, just switch from using `targetClass` to `targetId` and things should still work properly.
-If you're using `onPlayerReady` or `onVideoPlay`, make sure to rename them to the new prop names.
+For full documentation on how to use React Twitch Embed Video visit: https://talk2megooseman.github.io/react-twitch-embed-video/
 
 ## Troubleshooting
 
@@ -53,26 +40,26 @@ If you're using `onPlayerReady` or `onVideoPlay`, make sure to rename them to th
 1. Install modules
     > yarn
 
-2. Check **_package.json_** so that the information is correct.
-3. Start storybook and start coding!
-    > yarn start
+1. Start storybook and start coding!
+    > yarn dev
 
-4. Bundle with `yarn build --watch`
-5. Make project available locally by using `npm link`
-6. To test if it works correctly in another project you can use npm `npm link react-twitch-embed-video`
+1. Make project available locally by using `npm link`
+1. To test if it works correctly in another project you can use npm `npm link react-twitch-embed-video`
+1. Verify all tests are passing
+    > yarn test
 
 #### Extra
-* If you want to run eslint:
-    > yarn lint
 
 * If you want to automatically fix lint problems run :
-    > yarn lint-fix
+    > yarn lint:fix
 
 Commands
 ----
 - `yarn`
 - `yarn build`
+- `yarn test`
+- `yarn coverage`
 - `yarn start`
 - `yarn release`
 - `yarn lint`
-- `yarn lint-fix`
+- `yarn lint:fix`

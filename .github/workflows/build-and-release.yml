@@ -5,8 +5,7 @@ on:
     types: [published]
 
 jobs:
-  build:
-
+  build_and_publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,16 +23,6 @@ jobs:
       run: |
         yarn lint
 
-    - name: Build Storybook
-      run: |
-        yarn release-storybook
-    # Switch to use https://github.com/actions/deploy-pages
-    # - name: Publish to Github Pages
-    #   uses: maxheld83/ghpages@v0.2.1
-    #   env:
-    #     GH_PAT: ${{ secrets.GH_PAT }}
-    #     BUILD_DIR: ".out/"
-
     - name: Build Package Release
       run: |
         yarn release
@@ -41,4 +30,32 @@ jobs:
     - run: npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN}}
+
+  deploy:
+    # Add a dependency to the build job
+    needs: build_and_publish
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Storybook
+        run: |
+          yarn release-storybook
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.out/'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
