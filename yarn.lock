@@ -1107,7 +1107,7 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@emotion/use-insertion-effect-with-fallbacks@^1.0.0":
+"@emotion/use-insertion-effect-with-fallbacks@^1.0.0", "@emotion/use-insertion-effect-with-fallbacks@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@emotion/use-insertion-effect-with-fallbacks/-/use-insertion-effect-with-fallbacks-1.0.1.tgz#08de79f54eb3406f9daaf77c76e35313da963963"
   integrity sha512-jT/qyKZ9rzLErtrjGgdkMBn2OP8wl0G3sQlBb3YPryvKHsjvINUhVaPFfP+fpBcOkmrVOVEEHQFJ7nbj2TH2gw==
@@ -2312,6 +2312,13 @@
   dependencies:
     "@storybook/global" "^5.0.0"
 
+"@storybook/client-logger@8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-8.0.1.tgz#ec5f1e719eb1eaa7ae85a77985c17d039cf5dcef"
+  integrity sha512-8NgJlVixYQB+c0zduoCAcOtEm4M9y776QKtmXvCaCtxyXl2uCbZFAMy6iai6ctoiVge0xiRaEzIkWKT1pHLDig==
+  dependencies:
+    "@storybook/global" "^5.0.0"
+
 "@storybook/codemod@7.6.17":
   version "7.6.17"
   resolved "https://registry.yarnpkg.com/@storybook/codemod/-/codemod-7.6.17.tgz#c93d87d74f43fd475d48edb178233e89329b72c2"
@@ -2669,13 +2676,23 @@
     fs-extra "^11.1.0"
     read-pkg-up "^7.0.1"
 
-"@storybook/theming@7.6.17", "@storybook/theming@^7.6.17":
+"@storybook/theming@7.6.17":
   version "7.6.17"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-7.6.17.tgz#8170e3e72b921380c51a3970890d4cb479a65c2f"
   integrity sha512-ZbaBt3KAbmBtfjNqgMY7wPMBshhSJlhodyMNQypv+95xLD/R+Az6aBYbpVAOygLaUQaQk4ar7H/Ww6lFIoiFbA==
   dependencies:
     "@emotion/use-insertion-effect-with-fallbacks" "^1.0.0"
     "@storybook/client-logger" "7.6.17"
+    "@storybook/global" "^5.0.0"
+    memoizerific "^1.11.3"
+
+"@storybook/theming@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-8.0.1.tgz#cbf1d83f32bf4fd304896dc40177c8c5a32b3b1c"
+  integrity sha512-TUmSHRh3YrpJ25DYjD+9PpJaq9Qf9P1S2xpwfNARM9r2KpkMF1/RgqnnQgZpP9od0Tzvkji7XPzxPU//EmQKEA==
+  dependencies:
+    "@emotion/use-insertion-effect-with-fallbacks" "^1.0.1"
+    "@storybook/client-logger" "8.0.1"
     "@storybook/global" "^5.0.0"
     memoizerific "^1.11.3"
 
