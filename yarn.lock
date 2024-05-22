@@ -1107,7 +1107,7 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
   integrity sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==
 
-"@emotion/use-insertion-effect-with-fallbacks@^1.0.0":
+"@emotion/use-insertion-effect-with-fallbacks@^1.0.0", "@emotion/use-insertion-effect-with-fallbacks@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@emotion/use-insertion-effect-with-fallbacks/-/use-insertion-effect-with-fallbacks-1.0.1.tgz#08de79f54eb3406f9daaf77c76e35313da963963"
   integrity sha512-jT/qyKZ9rzLErtrjGgdkMBn2OP8wl0G3sQlBb3YPryvKHsjvINUhVaPFfP+fpBcOkmrVOVEEHQFJ7nbj2TH2gw==
@@ -2312,6 +2312,13 @@
   dependencies:
     "@storybook/global" "^5.0.0"
 
+"@storybook/client-logger@8.1.2":
+  version "8.1.2"
+  resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-8.1.2.tgz#32bca1651892b18edd627d2835f44b50bee0d19c"
+  integrity sha512-2kiXh0CE2IJpV++r0sGknMVMjAiT/tQe16FlGHOh52XppUz7slQVy/W/nPhVKvcbdThSQd0kYFR9r3XmAT1LSQ==
+  dependencies:
+    "@storybook/global" "^5.0.0"
+
 "@storybook/codemod@7.6.17":
   version "7.6.17"
   resolved "https://registry.yarnpkg.com/@storybook/codemod/-/codemod-7.6.17.tgz#c93d87d74f43fd475d48edb178233e89329b72c2"
@@ -2669,13 +2676,23 @@
     fs-extra "^11.1.0"
     read-pkg-up "^7.0.1"
 
-"@storybook/theming@7.6.17", "@storybook/theming@^7.6.17":
+"@storybook/theming@7.6.17":
   version "7.6.17"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-7.6.17.tgz#8170e3e72b921380c51a3970890d4cb479a65c2f"
   integrity sha512-ZbaBt3KAbmBtfjNqgMY7wPMBshhSJlhodyMNQypv+95xLD/R+Az6aBYbpVAOygLaUQaQk4ar7H/Ww6lFIoiFbA==
   dependencies:
     "@emotion/use-insertion-effect-with-fallbacks" "^1.0.0"
     "@storybook/client-logger" "7.6.17"
+    "@storybook/global" "^5.0.0"
+    memoizerific "^1.11.3"
+
+"@storybook/theming@^8.1.2":
+  version "8.1.2"
+  resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-8.1.2.tgz#fa7ddc2eee788d8916f982ce46af2d42b47b1042"
+  integrity sha512-4ayCoSluaReGfj+wDa/KKwX5mEReVsjDhQ3nCusKsPQJK5zgT4Vt4CZekU7IK0cYmRPF4nMgVH3m3jmMD4x4ng==
+  dependencies:
+    "@emotion/use-insertion-effect-with-fallbacks" "^1.0.1"
+    "@storybook/client-logger" "8.1.2"
     "@storybook/global" "^5.0.0"
     memoizerific "^1.11.3"
 
@@ -9599,8 +9616,7 @@ string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.1:
-  name strip-ansi-cjs
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -9613,6 +9629,13 @@ strip-ansi@^6.0.0:
   integrity sha512-AuvKTrTfQNYNIctbR1K/YGTR1756GycPsg7b9bdV9Duqur4gv6aKqHXah67Z8ImS7WEz5QVcOtlfW2rZEugt6w==
   dependencies:
     ansi-regex "^5.0.0"
+
+strip-ansi@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
+  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
+  dependencies:
+    ansi-regex "^5.0.1"
 
 strip-ansi@^7.0.1:
   version "7.1.0"
