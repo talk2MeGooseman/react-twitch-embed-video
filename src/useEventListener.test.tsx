@@ -47,7 +47,7 @@ describe('useEventListener', () => {
     const cleanUpFunc = result.current(EVENT, callback)
     cleanUpFunc()
 
-    expect(addEventListenerMock).not.toBeCalled()
-    expect(removeEventListenerMock).not.toBeCalled()
+    expect(addEventListenerMock).not.toHaveBeenCalled()
+    expect(removeEventListenerMock).not.toHaveBeenCalled()
   })
 })

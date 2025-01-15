@@ -9,12 +9,12 @@ export default {
     },
   },
 
-  "stories": [
-    "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)"
-  ],
+  "stories": ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
 
-  "addons": ["@storybook/addon-essentials", "@storybook/addon-mdx-gfm"],
+  "addons": [
+    "@storybook/addon-essentials",
+    "@chromatic-com/storybook"
+  ],
 
   framework: {
     name: "@storybook/react-vite",

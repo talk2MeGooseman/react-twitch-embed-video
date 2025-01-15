@@ -1,7 +1,7 @@
 import { default as React_2 } from 'react';
 
 declare const _default: React_2.MemoExoticComponent<{
-    (props: IChannelEmbedParameters | IVodCollectionEmbedParameters | IVodEmbedParameters): JSX.Element;
+    (props: IChannelEmbedParameters | IVodCollectionEmbedParameters | IVodEmbedParameters): React_2.JSX.Element;
     defaultProps: {
         targetId: string;
         width: string;

@@ -1,6 +1,5 @@
 
 export const parameters = {
-         actions: { argTypesRegex: '^on[A-Z].*' },
          controls: { expanded: true },
          backgrounds: { disable: true },
          options: {
@@ -14,3 +13,4 @@ export const parameters = {
            },
          },
        };
+export const tags = ['autodocs'];
