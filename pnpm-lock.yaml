@@ -115,8 +115,8 @@ importers:
         specifier: ^2.0.4
         version: 2.0.4
       eslint-plugin-no-secrets:
-        specifier: ^0.8.9
-        version: 0.8.9(eslint@8.57.0)
+        specifier: ^2.1.1
+        version: 2.1.1(eslint@8.57.0)
       eslint-plugin-no-unsanitized:
         specifier: ^4.0.2
         version: 4.0.2(eslint@8.57.0)
@@ -3905,11 +3905,11 @@ packages:
     resolution: {integrity: sha512-r0CGAE5SrRYt1OdACNiZGiOcBbFslKIPnMrFo3kPmX3iKZOm8HRD2eIbqhlc9lSSiBWcPZxXErXnroqgt+dKBg==}
     engines: {node: '>=8.0.0'}
 
-  eslint-plugin-no-secrets@0.8.9:
-    resolution: {integrity: sha512-CqaBxXrImABCtxMWspAnm8d5UKkpNylC7zqVveb+fJHEvsSiNGJlSWzdSIvBUnW1XhJXkzifNIZQC08rEII5Ng==}
-    engines: {node: '>=10.0.0', npm: '>=6.9.0'}
+  eslint-plugin-no-secrets@2.1.1:
+    resolution: {integrity: sha512-jcxk11tA3riniLoI5UqUtrW6/nmC60pNAG1NFpXrenzAu0Hmbjxq63e27YhvNIq+exT2yMZLvCqAQ+lC/+ZWZA==}
+    engines: {node: '>=18', npm: '>=8'}
     peerDependencies:
-      eslint: '>=3.0.0'
+      eslint: '>=5'
 
   eslint-plugin-no-unsanitized@4.0.2:
     resolution: {integrity: sha512-Pry0S9YmHoz8NCEMRQh7N0Yexh2MYCNPIlrV52hTmS7qXnTghWsjXouF08bgsrrZqaW9tt1ZiK3j5NEmPE+EjQ==}
@@ -12515,7 +12515,7 @@ snapshots:
     dependencies:
       requireindex: 1.2.0
 
-  eslint-plugin-no-secrets@0.8.9(eslint@8.57.0):
+  eslint-plugin-no-secrets@2.1.1(eslint@8.57.0):
     dependencies:
       eslint: 8.57.0
 
