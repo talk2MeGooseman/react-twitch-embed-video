@@ -38,28 +38,28 @@ For full documentation on how to use React Twitch Embed Video visit: https://tal
 ### Usage
 
 1. Install modules
-    > yarn
+    > pnpm
 
 1. Start storybook and start coding!
-    > yarn dev
+    > pnpm dev
 
 1. Make project available locally by using `npm link`
 1. To test if it works correctly in another project you can use npm `npm link react-twitch-embed-video`
 1. Verify all tests are passing
-    > yarn test
+    > pnpm test
 
 #### Extra
 
 * If you want to automatically fix lint problems run :
-    > yarn lint:fix
+    > pnpm lint:fix
 
 Commands
 ----
-- `yarn`
-- `yarn build`
-- `yarn test`
-- `yarn coverage`
-- `yarn start`
-- `yarn release`
-- `yarn lint`
-- `yarn lint:fix`
+- `pnpm`
+- `pnpm build`
+- `pnpm test`
+- `pnpm coverage`
+- `pnpm start`
+- `pnpm release`
+- `pnpm lint`
+- `pnpm lint:fix`

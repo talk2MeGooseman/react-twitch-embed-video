@@ -16,19 +16,19 @@ jobs:
       with:
         node-version: '20'
         registry-url: 'https://registry.npmjs.org'
-        cache: 'yarn'
-    - name: yarn install
+        cache: 'pnpm'
+    - name: install
       run: |
-        yarn install
+        pnpm install
 
-    - name: yarn lint
+    - name: lint
       run: |
-        yarn lint
+        pnpm lint
 
     - name: Build Storybook
       run: |
-        yarn release-storybook
+        pnpm release-storybook
 
     - name: Build Package Release
       run: |
-        yarn release
+        pnpm release
