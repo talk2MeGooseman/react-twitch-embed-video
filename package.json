@@ -42,7 +42,6 @@
     "react-dom": ">= 17.0.0"
   },
   "devDependencies": {
-    "@arkweid/lefthook": "^0.7.0",
     "@storybook/addon-essentials": "^7.6.17",
     "@storybook/addon-mdx-gfm": "^7.6.17",
     "@storybook/preset-create-react-app": "^7.6.17",
@@ -94,7 +93,8 @@
     "eslint-plugin-unicorn": "^51.0.1",
     "eslint-plugin-xss": "^0.1.12",
     "jsdom": "^24.0.0",
-    "prettier": "^3.2.5",
+    "lefthook": "^1.10.5",
+    "prettier": "^3.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.6.17",
