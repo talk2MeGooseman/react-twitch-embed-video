@@ -1,12 +1,11 @@
 import { act, renderHook } from '@testing-library/react'
-
 import { useTwitchEmbed } from './useTwitchEmbed'
 
 const mocks = vi.hoisted(() => {
   const mockCallback = vi.fn()
 
   class MockEmbed {
-    constructor(targetId: any, props: any) {
+    constructor(targetId: string, props: unknown) {
       mockCallback(targetId, props)
     }
   }
@@ -17,22 +16,23 @@ const mocks = vi.hoisted(() => {
   }
 })
 
-vi.mock('window-or-global', async () => ({
+vi.mock('window-or-global', () => { return {
   default: {
     Twitch: {
       Embed: mocks.embedMock,
     },
   },
-}))
+} })
 
 describe('useTwitchEmbed', () => {
   describe('if targetId is provided', () => {
     it('returns the embed object', () => {
       const { result } = renderHook(() =>
-        useTwitchEmbed({
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        { return useTwitchEmbed({
           targetId: 'twitch-embed',
-          anotherKey: 'value',
-        } as any),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any) },
       )
 
       const [embed, initialize] = result.current
@@ -48,8 +48,7 @@ describe('useTwitchEmbed', () => {
 
       expect(updatedEmbed).toBeInstanceOf(mocks.embedMock)
       expect(mocks.mockCallback).toHaveBeenCalledWith('twitch-embed', {
-        targetId: 'twitch-embed',
-        anotherKey: 'value',
+        targetId: 'twitch-embed'
       })
     })
   })
@@ -57,9 +56,11 @@ describe('useTwitchEmbed', () => {
   describe('if targetId is not provided', () => {
     it('returns the embed object, with default props', () => {
       const { result } = renderHook(() =>
-        useTwitchEmbed({
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        { return useTwitchEmbed({
           anotherKey: 'value',
-        } as any),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any) },
       )
 
       const [embed, initialize] = result.current

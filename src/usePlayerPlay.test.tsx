@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { act, renderHook } from '@testing-library/react'
-
 import { usePlayerPlay } from './usePlayerPlay'
 
 describe('usePlayerPlay', () => {
@@ -16,10 +17,10 @@ describe('usePlayerPlay', () => {
     describe('when shouldForcePlay is true', () => {
       it('calls onPlay', () => {
         const { result } = renderHook(() =>
-          usePlayerPlay({ getPlayer: getPlayerMock } as any, {
+          { return usePlayerPlay({ getPlayer: getPlayerMock } as any, {
             autoplay: true,
             onPlay: onPlayMock,
-          }),
+          }) },
         )
 
         act(() => {
@@ -33,13 +34,13 @@ describe('usePlayerPlay', () => {
       describe('when onPlay is not defined', () => {
         it('returns with with out error', () => {
           const { result } = renderHook(() =>
-            usePlayerPlay({ getPlayer: getPlayerMock } as any, {
+            { return usePlayerPlay({ getPlayer: getPlayerMock } as any, {
               autoplay: true,
-            }),
+            }) },
           )
 
           act(() => {
-            expect(() => result.current()).not.toThrow()
+            expect(() => { result.current(); }).not.toThrow()
           })
 
           expect(getPlayerMock).not.toHaveBeenCalled()
@@ -50,10 +51,10 @@ describe('usePlayerPlay', () => {
     describe('when shouldForcePlay is false', () => {
       it('calls player.pause and sets shouldForcePlay to true', () => {
         const { result } = renderHook(() =>
-          usePlayerPlay({ getPlayer: getPlayerMock } as any, {
+          { return usePlayerPlay({ getPlayer: getPlayerMock } as any, {
             autoplay: false,
             onPlay: onPlayMock,
-          }),
+          }) },
         )
 
         act(() => {
@@ -73,7 +74,7 @@ describe('usePlayerPlay', () => {
         usePlayerPlay(undefined, { autoplay: false }),
       )
 
-      expect(() => result.current()).not.toThrow()
+      expect(() => { result.current(); }).not.toThrow()
     })
   })
 })

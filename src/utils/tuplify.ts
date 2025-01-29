@@ -1,3 +1,1 @@
-export function tuplify<T extends unknown[]>(...elements: T) {
-  return elements
-}
+export const tuplify = <T extends unknown[]>(...elements: T) => elements

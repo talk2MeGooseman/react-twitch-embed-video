@@ -1,6 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
-
-import TwitchEmbedVideo from '../index'
+import TwitchEmbedVideo from ".."
 
 export default {
   title: 'Multiple Players',
@@ -31,8 +31,8 @@ export const MultiplePlayers = ({
 }: {
   player1Channel: string
   player2Channel: string
-}) => (
-  <>
+}) =>
+  { return <>
     <TwitchEmbedVideo width="500px" height="400px" channel={player1Channel} />
     <TwitchEmbedVideo
       width="500px"
@@ -40,8 +40,8 @@ export const MultiplePlayers = ({
       channel={player2Channel}
       targetId="second"
     />
-  </>
-)
+  </> }
+
 
 MultiplePlayers.args = {
   player1Channel: 'talk2megooseman',

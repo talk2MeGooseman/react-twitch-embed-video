@@ -1,7 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
-
-import TwitchEmbedVideo from '../index'
-import {
+import TwitchEmbedVideo from ".."
+import type {
   IChannelEmbedParameters,
   IVodCollectionEmbedParameters,
   IVodEmbedParameters,
@@ -32,6 +32,6 @@ const Template = (
     | IVodCollectionEmbedParameters
     | IVodEmbedParameters
     | IChannelEmbedParameters,
-) => <TwitchEmbedVideo {...args} />
+) => { return <TwitchEmbedVideo {...args} /> }
 
 export const VODExample = Template.bind({})

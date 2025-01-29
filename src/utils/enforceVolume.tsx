@@ -1,13 +1,9 @@
 import type { IPlayerInterface } from '../useTwitchEmbed'
+import { Volume } from './constants'
 
-export const Volume = {
-  MUTED: 0,
-  AUDIBLE: 1,
-} as const
-
-export function enforceVolume(
+export const enforceVolume = (
   player: IPlayerInterface,
   isMuted?: boolean,
-): void {
+): void => {
   player.setVolume(isMuted ? Volume.MUTED : Volume.AUDIBLE)
 }

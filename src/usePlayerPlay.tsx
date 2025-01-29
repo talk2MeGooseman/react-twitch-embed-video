@@ -1,15 +1,12 @@
 import { useCallback, useState } from 'react'
-
-import {
+import type {
   IChannelEmbedParameters,
   ITwitchEmbed,
   IVodCollectionEmbedParameters,
   IVodEmbedParameters,
 } from './useTwitchEmbed'
 
-interface IPlayAction {
-  (): void
-}
+type IPlayAction = () => void
 
 const usePlayerPlay = (
   embedObj: ITwitchEmbed | undefined,
@@ -22,20 +19,24 @@ const usePlayerPlay = (
     | IVodEmbedParameters
   >,
 ): IPlayAction => {
-  const [shouldForcePlay, setForcePlay] = useState<boolean | undefined>(
+  const [shouldForcePlay, setShouldForcePlay] = useState<boolean | undefined>(
     autoplay,
   )
 
   return useCallback(() => {
-    if (!embedObj) return
+    if (!embedObj) {return}
 
-    if (shouldForcePlay) return onPlay && onPlay()
+    if (shouldForcePlay) {
+      onPlay && onPlay();
+
+      return
+    }
 
     const player = embedObj.getPlayer()
 
     player.pause()
-    setForcePlay(true)
-  }, [onPlay, embedObj, setForcePlay, shouldForcePlay])
+    setShouldForcePlay(true)
+  }, [onPlay, embedObj, setShouldForcePlay, shouldForcePlay])
 }
 
 export { usePlayerPlay }

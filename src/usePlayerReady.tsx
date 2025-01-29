@@ -1,5 +1,4 @@
 import { useCallback } from 'react'
-
 import type {
   IChannelEmbedParameters,
   ITwitchEmbed,
@@ -8,9 +7,7 @@ import type {
 } from './useTwitchEmbed'
 import { enforceAutoPlay, enforceVolume } from './utils'
 
-interface IReadyAction {
-  (): void
-}
+type IReadyAction = () => void
 
 const usePlayerReady = (
   embedObj: ITwitchEmbed | undefined,
@@ -23,18 +20,18 @@ const usePlayerReady = (
     | IVodCollectionEmbedParameters
     | IVodEmbedParameters
   >,
-): IReadyAction =>
-  useCallback(() => {
-    if (!embedObj) return
+): IReadyAction => {
+  return useCallback(() => {
+    if (!embedObj) { return }
 
     const player = embedObj.getPlayer()
 
     enforceVolume(player, isMuted)
     enforceAutoPlay(player, isAutoPlay)
 
-    if (onReady) {
-      return onReady(player)
-    }
+    if (onReady) {onReady(player)}
+
   }, [embedObj, isMuted, isAutoPlay, onReady])
+}
 
 export { usePlayerReady }

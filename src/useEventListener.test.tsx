@@ -1,5 +1,4 @@
 import { renderHook } from '@testing-library/react'
-
 import { useEventListener } from './useEventListener'
 import type { ITwitchEmbed } from './useTwitchEmbed'
 
@@ -34,6 +33,7 @@ describe('useEventListener', () => {
     )
 
     const cleanUpFunc = result.current(EVENT, callback)
+
     cleanUpFunc()
 
     expect(addEventListenerMock).toHaveBeenCalledWith(EVENT, callback)
@@ -41,10 +41,11 @@ describe('useEventListener', () => {
   })
 
   it('returns a noop function when the embed object is undefined', () => {
-    // eslint-disable-next-line unicorn/no-useless-undefined
+     
     const { result } = renderHook(() => useEventListener(undefined))
 
     const cleanUpFunc = result.current(EVENT, callback)
+
     cleanUpFunc()
 
     expect(addEventListenerMock).not.toHaveBeenCalled()

@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { act, renderHook } from '@testing-library/react'
-
 import { usePlayerReady } from './usePlayerReady'
 
 describe('usePlayerReady', () => {
   const setVolumeMock = vi.fn()
   const pauseMock = vi.fn()
-  const getPlayerMock = vi.fn(() => ({
+  const getPlayerMock = vi.fn(() => { return {
     setVolume: setVolumeMock,
     pause: pauseMock,
-  }))
+  } })
   const onReadyMock = vi.fn()
 
   afterEach(() => {
@@ -18,9 +19,9 @@ describe('usePlayerReady', () => {
   describe('when embedObj is defined', () => {
     it('calls the onReady callback with the player', () => {
       const { result } = renderHook(() =>
-        usePlayerReady({ getPlayer: getPlayerMock } as any, {
+        { return usePlayerReady({ getPlayer: getPlayerMock } as any, {
           onReady: onReadyMock,
-        }),
+        }) },
       )
 
       act(() => {
@@ -33,9 +34,9 @@ describe('usePlayerReady', () => {
     describe('when autoplay is true', () => {
       it('does not call player.pause', () => {
         const { result } = renderHook(() =>
-          usePlayerReady({ getPlayer: getPlayerMock } as any, {
+          { return usePlayerReady({ getPlayer: getPlayerMock } as any, {
             autoplay: true,
-          }),
+          }) },
         )
 
         act(() => {
@@ -49,9 +50,9 @@ describe('usePlayerReady', () => {
     describe('when autoplay is false', () => {
       it('does call player.pause', () => {
         const { result } = renderHook(() =>
-          usePlayerReady({ getPlayer: getPlayerMock } as any, {
+          { return usePlayerReady({ getPlayer: getPlayerMock } as any, {
             autoplay: false,
-          }),
+          }) },
         )
 
         act(() => {
@@ -65,9 +66,9 @@ describe('usePlayerReady', () => {
     describe('when muted is true', () => {
       it('calls player.setVolume with 0', () => {
         const { result } = renderHook(() =>
-          usePlayerReady({ getPlayer: getPlayerMock } as any, {
+          { return usePlayerReady({ getPlayer: getPlayerMock } as any, {
             muted: true,
-          }),
+          }) },
         )
 
         act(() => {
@@ -81,9 +82,9 @@ describe('usePlayerReady', () => {
     describe('when muted is false', () => {
       it('calls player.setVolume with 1', () => {
         const { result } = renderHook(() =>
-          usePlayerReady({ getPlayer: getPlayerMock } as any, {
+          { return usePlayerReady({ getPlayer: getPlayerMock } as any, {
             muted: false,
-          }),
+          }) },
         )
 
         act(() => {
@@ -100,17 +101,17 @@ describe('usePlayerReady', () => {
           usePlayerReady({ getPlayer: getPlayerMock } as any, {}),
         )
 
-        expect(() => result.current()).not.toThrow()
+        expect(() => { result.current(); }).not.toThrow()
       })
     })
   })
 
   describe('when embedObj is undefined', () => {
     it('returns with out error', () => {
-      // eslint-disable-next-line unicorn/no-useless-undefined
+
       const { result } = renderHook(() => usePlayerReady(undefined, {}))
 
-      expect(() => result.current()).not.toThrow()
+      expect(() => { result.current(); }).not.toThrow()
     })
   })
 })

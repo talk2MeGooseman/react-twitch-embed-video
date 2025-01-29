@@ -20,7 +20,7 @@ describe('loadEmbedApi', () => {
   vi.stubGlobal('document', documentMock)
 
   describe('when the script tag already exists', () => {
-    it('does not inject the Twitch embed script into the dom', async () => {
+    it('does not inject the Twitch embed script into the dom', () => {
       querySelectorMock.mockReturnValue(true)
       loadEmbedApi()
       expect(querySelectorMock).toHaveBeenCalledWith(
@@ -32,7 +32,7 @@ describe('loadEmbedApi', () => {
   })
 
   describe('when the script tag does not exist', () => {
-    it('injects the Twitch embed script into the dom and adds an event listener', async () => {
+    it('injects the Twitch embed script into the dom and adds an event listener', () => {
       querySelectorMock.mockReturnValue(false)
 
       loadEmbedApi()

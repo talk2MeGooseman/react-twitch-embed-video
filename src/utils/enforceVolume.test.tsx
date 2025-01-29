@@ -1,5 +1,6 @@
 import type { IPlayerInterface } from '../useTwitchEmbed'
-import { enforceVolume, Volume } from './enforceVolume'
+import { Volume } from './constants'
+import { enforceVolume } from './enforceVolume'
 
 describe('enforceVolume', () => {
   const playerMock: Partial<IPlayerInterface> = {
