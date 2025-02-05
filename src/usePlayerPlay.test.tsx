@@ -6,7 +6,7 @@ import { usePlayerPlay } from './usePlayerPlay'
 describe('usePlayerPlay', () => {
   const onPlayMock = vi.fn()
   const pauseMock = vi.fn()
-  const playerMock = { pause: pauseMock }
+  const playerMock = { pause: pauseMock, play: playMock }
   const getPlayerMock = vi.fn(() => playerMock)
 
   afterEach(() => {
@@ -28,7 +28,7 @@ describe('usePlayerPlay', () => {
         })
 
         expect(onPlayMock).toHaveBeenCalled()
-        expect(getPlayerMock).not.toHaveBeenCalled()
+        expect(pauseMock).not.toHaveBeenCalled()
       })
 
       describe('when onPlay is not defined', () => {
@@ -42,8 +42,6 @@ describe('usePlayerPlay', () => {
           act(() => {
             expect(() => { result.current(); }).not.toThrow()
           })
-
-          expect(getPlayerMock).not.toHaveBeenCalled()
         })
       })
     })

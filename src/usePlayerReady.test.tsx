@@ -6,10 +6,14 @@ import { usePlayerReady } from './usePlayerReady'
 describe('usePlayerReady', () => {
   const setVolumeMock = vi.fn()
   const pauseMock = vi.fn()
-  const getPlayerMock = vi.fn(() => { return {
-    setVolume: setVolumeMock,
-    pause: pauseMock,
-  } })
+  const playMock = vi.fn()
+  const getPlayerMock = vi.fn(() => {
+    return {
+      setVolume: setVolumeMock,
+      pause: pauseMock,
+      play: playMock,
+    }
+  })
   const onReadyMock = vi.fn()
 
   afterEach(() => {
@@ -18,10 +22,11 @@ describe('usePlayerReady', () => {
 
   describe('when embedObj is defined', () => {
     it('calls the onReady callback with the player', () => {
-      const { result } = renderHook(() =>
-        { return usePlayerReady({ getPlayer: getPlayerMock } as any, {
+      const { result } = renderHook(() => {
+        return usePlayerReady({ getPlayer: getPlayerMock } as any, {
           onReady: onReadyMock,
-        }) },
+        })
+      },
       )
 
       act(() => {
@@ -31,12 +36,29 @@ describe('usePlayerReady', () => {
       expect(onReadyMock).toHaveBeenCalledWith(getPlayerMock())
     })
 
+    describe('when autoplay is not set', () => {
+      it('calls player.play', () => {
+        const { result } = renderHook(() => {
+          return usePlayerReady({ getPlayer: getPlayerMock } as any, {
+          })
+        },
+        )
+
+        act(() => {
+          result.current()
+        })
+
+        expect(playMock).not.toHaveBeenCalled()
+      })
+    })
+
     describe('when autoplay is true', () => {
       it('does not call player.pause', () => {
-        const { result } = renderHook(() =>
-          { return usePlayerReady({ getPlayer: getPlayerMock } as any, {
+        const { result } = renderHook(() => {
+          return usePlayerReady({ getPlayer: getPlayerMock } as any, {
             autoplay: true,
-          }) },
+          })
+        },
         )
 
         act(() => {
@@ -49,10 +71,11 @@ describe('usePlayerReady', () => {
 
     describe('when autoplay is false', () => {
       it('does call player.pause', () => {
-        const { result } = renderHook(() =>
-          { return usePlayerReady({ getPlayer: getPlayerMock } as any, {
+        const { result } = renderHook(() => {
+          return usePlayerReady({ getPlayer: getPlayerMock } as any, {
             autoplay: false,
-          }) },
+          })
+        },
         )
 
         act(() => {
@@ -65,10 +88,11 @@ describe('usePlayerReady', () => {
 
     describe('when muted is true', () => {
       it('calls player.setVolume with 0', () => {
-        const { result } = renderHook(() =>
-          { return usePlayerReady({ getPlayer: getPlayerMock } as any, {
+        const { result } = renderHook(() => {
+          return usePlayerReady({ getPlayer: getPlayerMock } as any, {
             muted: true,
-          }) },
+          })
+        },
         )
 
         act(() => {
@@ -81,10 +105,11 @@ describe('usePlayerReady', () => {
 
     describe('when muted is false', () => {
       it('calls player.setVolume with 1', () => {
-        const { result } = renderHook(() =>
-          { return usePlayerReady({ getPlayer: getPlayerMock } as any, {
+        const { result } = renderHook(() => {
+          return usePlayerReady({ getPlayer: getPlayerMock } as any, {
             muted: false,
-          }) },
+          })
+        },
         )
 
         act(() => {

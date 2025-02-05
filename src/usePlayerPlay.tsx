@@ -25,14 +25,13 @@ const usePlayerPlay = (
 
   return useCallback(() => {
     if (!embedObj) {return}
+    const player = embedObj.getPlayer()
 
     if (shouldForcePlay) {
       onPlay && onPlay();
 
       return
     }
-
-    const player = embedObj.getPlayer()
 
     player.pause()
     setShouldForcePlay(true)
