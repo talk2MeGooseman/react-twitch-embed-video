@@ -28,6 +28,7 @@ describe('useTwitchEmbed', () => {
   describe('if targetId is provided', () => {
     it('returns the embed object', () => {
       const { result } = renderHook(() =>
+
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         { return useTwitchEmbed({
           targetId: 'some-id',
@@ -54,6 +55,7 @@ describe('useTwitchEmbed', () => {
   describe('if targetId is not provided', () => {
     it('returns the embed object, with default props', () => {
       const { result } = renderHook(() =>
+
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         { return useTwitchEmbed({
           anotherKey: 'value',

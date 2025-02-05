@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import root from 'window-or-global'
-import type { IChannelEmbedParameters, ITwitchWindow,IVodCollectionEmbedParameters, IVodEmbedParameters } from './@types/types'
+import type { IEmbedParameters, ITwitchWindow } from './@types/types'
 import { loadEmbedApi } from './loadEmbedApi'
 import { useEventListener } from './useEventListener'
 import { usePlayerPlay } from './usePlayerPlay'
@@ -11,10 +11,7 @@ import {
 import { DEFAULT_HEIGHT, DEFAULT_TARGET_ID, DEFAULT_WIDTH } from './utils'
 
 const TwitchEmbedVideo = (
-  props:
-    | IChannelEmbedParameters
-    | IVodCollectionEmbedParameters
-    | IVodEmbedParameters,
+  props: IEmbedParameters,
 ) => {
   const {
     width = DEFAULT_WIDTH,

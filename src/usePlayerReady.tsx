@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import type { IChannelEmbedParameters, IReadyAction, ITwitchEmbed, IVodCollectionEmbedParameters, IVodEmbedParameters } from './@types/types'
+import type { IBaseEmbedParameters, IReadyAction, ITwitchEmbed } from './@types/types'
 import { enforceAutoPlay, enforceVolume } from './utils'
 
 const usePlayerReady = (
@@ -8,11 +8,7 @@ const usePlayerReady = (
     autoplay: isAutoPlay,
     muted: isMuted = false,
     onReady,
-  }: Partial<
-    | IChannelEmbedParameters
-    | IVodCollectionEmbedParameters
-    | IVodEmbedParameters
-  >,
+  }: IBaseEmbedParameters,
 ): IReadyAction => {
   return useCallback(() => {
     if (!embedObj) { return }

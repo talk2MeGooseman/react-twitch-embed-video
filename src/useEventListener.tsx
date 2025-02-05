@@ -1,12 +1,11 @@
 import { useCallback } from 'react'
 import type { IAddEventListener, ITwitchEmbed } from './@types/types'
 
-
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = (): void => {}
 
 const useEventListener = (
-  embedObj: ITwitchEmbed | undefined,
+  embedObj?: ITwitchEmbed,
 ): IAddEventListener =>
   { return useCallback(
     (event, callback) => {

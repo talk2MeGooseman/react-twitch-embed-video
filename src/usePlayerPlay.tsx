@@ -1,16 +1,12 @@
 import { useCallback, useState } from 'react'
-import type { IChannelEmbedParameters, IPlayAction, ITwitchEmbed, IVodCollectionEmbedParameters, IVodEmbedParameters } from './@types/types'
+import type { IBaseEmbedParameters, IPlayAction, ITwitchEmbed } from './@types/types'
 
 const usePlayerPlay = (
   embedObj: ITwitchEmbed | undefined,
   {
     autoplay = true,
     onPlay,
-  }: Partial<
-    | IChannelEmbedParameters
-    | IVodCollectionEmbedParameters
-    | IVodEmbedParameters
-  >,
+  }: IBaseEmbedParameters,
 ): IPlayAction => {
   const [shouldForcePlay, setShouldForcePlay] = useState(
     autoplay,

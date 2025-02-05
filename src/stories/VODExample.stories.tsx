@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 import TwitchEmbedVideo from ".."
-import type { IChannelEmbedParameters,IVodCollectionEmbedParameters, IVodEmbedParameters } from '../@types/types'
-import { DEFAULT_HEIGHT,DEFAULT_WIDTH } from '../utils'
+import type { IEmbedParameters } from '../@types/types'
+import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '../utils'
 
 export default {
   title: 'VOD Example',
@@ -28,9 +28,7 @@ export default {
 
 const Template = (
   args:
-    | IVodCollectionEmbedParameters
-    | IVodEmbedParameters
-    | IChannelEmbedParameters,
+    IEmbedParameters,
 ) => { return <TwitchEmbedVideo {...args} /> }
 
 export const VODExample = Template.bind({})

@@ -1,6 +1,5 @@
 export type IAddEventListener = (event: string, callback: () => void) => () => void
 
-
 export type IPlayAction = () => void
 
 export type IReadyAction = () => void
@@ -120,6 +119,8 @@ export interface IVodEmbedParameters extends IBaseEmbedParameters {
   /** ID of a VOD to play. Chat replay is not supported. */
   video: string
 }
+
+export type IEmbedParameters = IChannelEmbedParameters | IVodCollectionEmbedParameters | IVodEmbedParameters
 
 export interface ITwitchEmbed {
   addEventListener: (

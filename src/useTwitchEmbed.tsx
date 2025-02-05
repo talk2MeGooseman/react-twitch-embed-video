@@ -1,13 +1,10 @@
 import { useCallback, useState } from 'react'
 import root from 'window-or-global'
-import type { IChannelEmbedParameters, ITwitchEmbed, ITwitchWindow,IVodCollectionEmbedParameters, IVodEmbedParameters } from './@types/types'
+import type { IEmbedParameters, ITwitchEmbed, ITwitchWindow } from './@types/types'
 import { DEFAULT_TARGET_ID, tuplify } from './utils'
 
 const useTwitchEmbed = (
-  props:
-    | IChannelEmbedParameters
-    | IVodCollectionEmbedParameters
-    | IVodEmbedParameters,
+  props: IEmbedParameters,
 ) => {
   const [embed, setEmbed] = useState<ITwitchEmbed>()
 
