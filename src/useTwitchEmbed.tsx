@@ -159,9 +159,9 @@ const useTwitchEmbed = (
   const [embed, setEmbed] = useState<ITwitchEmbed>()
 
   const initialize = useCallback(() => {
-    const rootWindow = root as unknown as ITwitchWindow
+    const rootWindow = root as unknown as ITwitchWindow | null
 
-    if (rootWindow.Twitch?.Embed === undefined) {
+    if (rootWindow?.Twitch?.Embed === undefined) {
       return
     }
 
