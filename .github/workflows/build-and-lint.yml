@@ -29,10 +29,10 @@ jobs:
       run: |
         pnpm lint
 
-    - name: Build Storybook
+    - name: Check Build Storybook
       run: |
         pnpm release-storybook
 
-    - name: Build Package Release
+    - name: Check Build Package Release
       run: |
         pnpm release
