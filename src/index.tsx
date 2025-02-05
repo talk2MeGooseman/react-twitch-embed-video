@@ -19,7 +19,13 @@ const TwitchEmbedVideo = (
     | IVodCollectionEmbedParameters
     | IVodEmbedParameters,
 ) => {
-  const { width, height, targetId, targetClass } = props
+  const {
+    width = DEFAULT_WIDTH,
+    height = DEFAULT_HEIGHT,
+    targetId = DEFAULT_TARGET_ID,
+    targetClass
+  } = props
+
   const containerRef = useRef<HTMLDivElement>(null)
   const [embed, initializeEmbed] = useTwitchEmbed(props)
 
@@ -30,7 +36,7 @@ const TwitchEmbedVideo = (
   useEffect(() => {
     const rootWindow = root as unknown as ITwitchWindow
 
-    if (rootWindow.Twitch?.Embed === undefined) {return}
+    if (rootWindow.Twitch?.Embed === undefined) { return }
 
     const { VIDEO_PLAY, VIDEO_READY } = rootWindow.Twitch.Embed
 
@@ -54,8 +60,7 @@ const TwitchEmbedVideo = (
   useEffect(() => {
     const rootWindow = root as unknown as ITwitchWindow
 
-    if (containerRef.current)
-      {containerRef.current.innerHTML = ''}
+    if (containerRef.current) { containerRef.current.innerHTML = '' }
 
     // Check if we have Twitch in the global space and Embed is available
     if (rootWindow.Twitch?.Embed) {
@@ -76,14 +81,6 @@ const TwitchEmbedVideo = (
       id={targetId}
     />
   )
-}
-
-TwitchEmbedVideo.defaultProps = {
-  targetId: DEFAULT_TARGET_ID,
-  width: DEFAULT_HEIGHT,
-  height: DEFAULT_WIDTH,
-  autoplay: true,
-  muted: false,
 }
 
 // eslint-disable-next-line import/no-default-export

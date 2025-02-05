@@ -6,12 +6,15 @@ import type {
   IVodCollectionEmbedParameters,
   IVodEmbedParameters,
 } from '../useTwitchEmbed'
+import { DEFAULT_HEIGHT, DEFAULT_WIDTH } from '../utils'
 
 export default {
   title: 'Channel Example',
   component: TwitchEmbedVideo,
   args: {
     channel: 'talk2megooseman',
+    width: DEFAULT_WIDTH,
+    height: DEFAULT_HEIGHT,
   },
   argTypes: {
     onPlay: { action: 'Video Playback Started.' },

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import root from 'window-or-global'
-import { tuplify } from './utils'
+import { DEFAULT_TARGET_ID, tuplify } from './utils'
 
 type IVideoPlayEventCallback = () => void
 
@@ -159,6 +159,7 @@ const useTwitchEmbed = (
   const [embed, setEmbed] = useState<ITwitchEmbed>()
 
   const initialize = useCallback(() => {
+    const { targetId = DEFAULT_TARGET_ID, ...otherProps } = props
     const rootWindow = root as unknown as ITwitchWindow | null
 
     if (rootWindow?.Twitch?.Embed === undefined) {
@@ -166,9 +167,9 @@ const useTwitchEmbed = (
     }
 
     const twitchEmbed = new rootWindow.Twitch.Embed(
-      props.targetId ?? '',
+      targetId,
       {
-        ...props,
+        ...otherProps,
       },
     )
 

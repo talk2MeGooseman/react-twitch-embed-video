@@ -13,7 +13,7 @@ const usePlayerReady = (
   embedObj: ITwitchEmbed | undefined,
   {
     autoplay: isAutoPlay,
-    muted: isMuted,
+    muted: isMuted = false,
     onReady,
   }: Partial<
     | IChannelEmbedParameters

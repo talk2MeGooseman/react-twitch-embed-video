@@ -30,7 +30,7 @@ describe('useTwitchEmbed', () => {
       const { result } = renderHook(() =>
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         { return useTwitchEmbed({
-          targetId: 'twitch-embed',
+          targetId: 'some-id',
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any) },
       )
@@ -47,9 +47,7 @@ describe('useTwitchEmbed', () => {
       const [updatedEmbed] = result.current
 
       expect(updatedEmbed).toBeInstanceOf(mocks.embedMock)
-      expect(mocks.mockCallback).toHaveBeenCalledWith('twitch-embed', {
-        targetId: 'twitch-embed'
-      })
+      expect(mocks.mockCallback).toHaveBeenCalledWith('some-id', {})
     })
   })
 
@@ -75,7 +73,7 @@ describe('useTwitchEmbed', () => {
       const [updatedEmbed] = result.current
 
       expect(updatedEmbed).toBeInstanceOf(mocks.embedMock)
-      expect(mocks.mockCallback).toHaveBeenCalledWith('', {
+      expect(mocks.mockCallback).toHaveBeenCalledWith('twitch-embed', {
         anotherKey: 'value',
       })
     })

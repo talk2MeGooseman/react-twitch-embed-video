@@ -11,7 +11,7 @@ type IPlayAction = () => void
 const usePlayerPlay = (
   embedObj: ITwitchEmbed | undefined,
   {
-    autoplay,
+    autoplay = true,
     onPlay,
   }: Partial<
     | IChannelEmbedParameters
@@ -19,7 +19,7 @@ const usePlayerPlay = (
     | IVodEmbedParameters
   >,
 ): IPlayAction => {
-  const [shouldForcePlay, setShouldForcePlay] = useState<boolean | undefined>(
+  const [shouldForcePlay, setShouldForcePlay] = useState(
     autoplay,
   )
 

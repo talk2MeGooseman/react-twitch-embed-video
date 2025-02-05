@@ -6,12 +6,15 @@ import type {
   IVodCollectionEmbedParameters,
   IVodEmbedParameters,
 } from '../useTwitchEmbed'
+import { DEFAULT_HEIGHT,DEFAULT_WIDTH } from '../utils'
 
 export default {
   title: 'VOD Example',
   component: TwitchEmbedVideo,
   args: {
     video: '462014255',
+    width: DEFAULT_WIDTH,
+    height: DEFAULT_HEIGHT,
   },
   argTypes: {
     onPlay: { action: 'Video Playback Started.' },
