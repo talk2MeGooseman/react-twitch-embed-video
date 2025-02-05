@@ -1,4 +1,4 @@
-import type { IPlayerInterface } from '../useTwitchEmbed'
+import type { IPlayerInterface } from '../@types/types'
 import { Volume } from './constants'
 import { enforceVolume } from './enforceVolume'
 

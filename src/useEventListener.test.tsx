@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react'
+import type { ITwitchEmbed } from './@types/types'
 import { useEventListener } from './useEventListener'
-import type { ITwitchEmbed } from './useTwitchEmbed'
 
 describe('useEventListener', () => {
   const addEventListenerMock = vi.fn()
@@ -41,7 +41,7 @@ describe('useEventListener', () => {
   })
 
   it('returns a noop function when the embed object is undefined', () => {
-     
+
     const { result } = renderHook(() => useEventListener(undefined))
 
     const cleanUpFunc = result.current(EVENT, callback)

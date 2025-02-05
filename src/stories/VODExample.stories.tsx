@@ -1,11 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react'
 import TwitchEmbedVideo from ".."
-import type {
-  IChannelEmbedParameters,
-  IVodCollectionEmbedParameters,
-  IVodEmbedParameters,
-} from '../useTwitchEmbed'
+import type { IChannelEmbedParameters,IVodCollectionEmbedParameters, IVodEmbedParameters } from '../@types/types'
 import { DEFAULT_HEIGHT,DEFAULT_WIDTH } from '../utils'
 
 export default {

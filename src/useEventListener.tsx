@@ -1,7 +1,6 @@
 import { useCallback } from 'react'
-import type { ITwitchEmbed } from './useTwitchEmbed'
+import type { IAddEventListener, ITwitchEmbed } from './@types/types'
 
-type IAddEventListener = (event: string, callback: () => void) => () => void
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = (): void => {}

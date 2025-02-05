@@ -6,7 +6,7 @@ import { usePlayerPlay } from './usePlayerPlay'
 describe('usePlayerPlay', () => {
   const onPlayMock = vi.fn()
   const pauseMock = vi.fn()
-  const playerMock = { pause: pauseMock, play: playMock }
+  const playerMock = { pause: pauseMock }
   const getPlayerMock = vi.fn(() => playerMock)
 
   afterEach(() => {

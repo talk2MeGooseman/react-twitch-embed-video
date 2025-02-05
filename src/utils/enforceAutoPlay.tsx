@@ -1,4 +1,4 @@
-import type { IPlayerInterface } from '../useTwitchEmbed'
+import type { IPlayerInterface } from "../@types/types"
 
 const enforceAutoPlay = (
   player: IPlayerInterface,

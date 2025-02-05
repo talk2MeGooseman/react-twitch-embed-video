@@ -1,13 +1,6 @@
 import { useCallback } from 'react'
-import type {
-  IChannelEmbedParameters,
-  ITwitchEmbed,
-  IVodCollectionEmbedParameters,
-  IVodEmbedParameters,
-} from './useTwitchEmbed'
+import type { IChannelEmbedParameters, IReadyAction, ITwitchEmbed, IVodCollectionEmbedParameters, IVodEmbedParameters } from './@types/types'
 import { enforceAutoPlay, enforceVolume } from './utils'
-
-type IReadyAction = () => void
 
 const usePlayerReady = (
   embedObj: ITwitchEmbed | undefined,
