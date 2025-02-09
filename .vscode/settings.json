@@ -1,0 +1,7 @@
+{
+  "github.copilot.chat.testGeneration.instructions": [
+    {
+      "file": "test-code-style.md"
+    }
+  ]
+}
