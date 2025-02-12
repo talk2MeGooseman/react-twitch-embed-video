@@ -8,10 +8,12 @@ const usePlayerPlay = (
   }: IBaseEmbedParameters,
 ): IPlayAction => {
   return useCallback(() => {
-    if (!embedObj) {return}
+    if (!embedObj) {
+      return
+    }
     const player = embedObj.getPlayer()
 
-    onPlay && onPlay(player)
+    onPlay?.(player)
   }, [onPlay, embedObj])
 }
 
