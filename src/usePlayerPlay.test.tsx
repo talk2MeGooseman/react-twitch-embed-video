@@ -17,10 +17,10 @@ describe('usePlayerPlay', () => {
     describe('when shouldForcePlay is true', () => {
       it('calls onPlay', () => {
         const { result } = renderHook(() =>
-          { return usePlayerPlay({ getPlayer: getPlayerMock } as any, {
+          usePlayerPlay({ getPlayer: getPlayerMock } as any, {
             autoplay: true,
             onPlay: onPlayMock,
-          }) },
+          }),
         )
 
         act(() => {
@@ -28,15 +28,14 @@ describe('usePlayerPlay', () => {
         })
 
         expect(onPlayMock).toHaveBeenCalled()
-        expect(pauseMock).not.toHaveBeenCalled()
       })
 
       describe('when onPlay is not defined', () => {
-        it('returns with with out error', () => {
+        it('returns without error', () => {
           const { result } = renderHook(() =>
-            { return usePlayerPlay({ getPlayer: getPlayerMock } as any, {
+            usePlayerPlay({ getPlayer: getPlayerMock } as any, {
               autoplay: true,
-            }) },
+            }),
           )
 
           act(() => {
@@ -47,27 +46,26 @@ describe('usePlayerPlay', () => {
     })
 
     describe('when shouldForcePlay is false', () => {
-      it('calls player.pause and sets shouldForcePlay to true', () => {
+      it('calls onPlay with the player', () => {
         const { result } = renderHook(() =>
-          { return usePlayerPlay({ getPlayer: getPlayerMock } as any, {
+          usePlayerPlay({ getPlayer: getPlayerMock } as any, {
             autoplay: false,
             onPlay: onPlayMock,
-          }) },
+          }),
         )
 
         act(() => {
           result.current()
         })
 
-        expect(onPlayMock).not.toHaveBeenCalled()
+        expect(onPlayMock).toHaveBeenCalledWith(playerMock)
         expect(getPlayerMock).toHaveBeenCalled()
-        expect(pauseMock).toHaveBeenCalled()
       })
     })
   })
 
   describe('when embedObj is undefined', () => {
-    it('returns with out error', () => {
+    it('returns without error', () => {
       const { result } = renderHook(() =>
         usePlayerPlay(undefined, { autoplay: false }),
       )

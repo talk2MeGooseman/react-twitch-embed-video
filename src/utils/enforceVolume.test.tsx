@@ -5,6 +5,7 @@ import { enforceVolume } from './enforceVolume'
 describe('enforceVolume', () => {
   const playerMock: Partial<IPlayerInterface> = {
     setVolume: vi.fn(),
+    setMuted: vi.fn()
   }
 
   afterEach(() => {

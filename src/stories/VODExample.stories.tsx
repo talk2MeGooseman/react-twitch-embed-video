@@ -11,6 +11,7 @@ export default {
     video: '462014255',
     width: DEFAULT_WIDTH,
     height: DEFAULT_HEIGHT,
+    autoplay: true,
   },
   argTypes: {
     onPlay: { action: 'Video Playback Started.' },

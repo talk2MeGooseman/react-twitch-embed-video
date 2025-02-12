@@ -6,7 +6,7 @@ const usePlayerReady = (
   embedObj: ITwitchEmbed | undefined,
   {
     autoplay: isAutoPlay,
-    muted: isMuted = false,
+    muted: isMuted = true,
     onReady,
   }: IBaseEmbedParameters,
 ): IReadyAction => {
@@ -18,7 +18,7 @@ const usePlayerReady = (
     enforceVolume(player, isMuted)
     enforceAutoPlay(player, isAutoPlay)
 
-    if (onReady) {onReady(player)}
+    onReady && onReady(player)
 
   }, [embedObj, isMuted, isAutoPlay, onReady])
 }

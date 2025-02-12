@@ -4,7 +4,7 @@ export type IPlayAction = () => void
 
 export type IReadyAction = () => void
 
-export type IVideoPlayEventCallback = () => void
+export type IVideoPlayEventCallback = (player: IPlayerInterface) => void
 
 export interface IPlaybackStatsInterface {
   backendVersion: string

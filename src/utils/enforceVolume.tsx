@@ -5,5 +5,6 @@ export const enforceVolume = (
   player: IPlayerInterface,
   isMuted?: boolean,
 ): void => {
+  player.setMuted(Boolean(isMuted))
   player.setVolume(isMuted ? Volume.MUTED : Volume.AUDIBLE)
 }

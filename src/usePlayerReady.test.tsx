@@ -5,11 +5,15 @@ import { usePlayerReady } from './usePlayerReady'
 
 describe('usePlayerReady', () => {
   const setVolumeMock = vi.fn()
+  const setMutedMock = vi.fn()
+  const getMutedMock = vi.fn()
   const pauseMock = vi.fn()
   const playMock = vi.fn()
   const getPlayerMock = vi.fn(() => {
     return {
       setVolume: setVolumeMock,
+      setMuted: setMutedMock,
+      getMuted: getMutedMock,
       pause: pauseMock,
       play: playMock,
     }
